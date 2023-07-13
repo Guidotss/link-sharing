@@ -1,10 +1,11 @@
 import { DevlinksLargeIcon, MailIcon, PassWordIcon } from "@/components";
+import { InputForm } from "@/components/form";
 import Link from "next/link";
 
 const RegisterPage = () => {
   return (
-    <main className="flex flex-col items-center justify-center h-screen">
-      <div className="flex mb-10">
+    <main className="flex flex-col items-center 2xl:justify-center h-screen">
+      <div className="flex 2xl:mb-10">
         <DevlinksLargeIcon />
       </div>
       <form className="flex flex-col bg-white rounded-xl h-1/2 w-[500px] p-16 text-dark_grey">
@@ -12,15 +13,14 @@ const RegisterPage = () => {
         <span className="mt-2 text text-dark_grey opacity-80 text-md">
           Let’s get you started sharing your links!
         </span>
-        <div className="mt-10 text-sm flex flex-col gap-2 items-center w-full">
+        <div className="2xl:mt-10 mt-8 text-sm flex flex-col gap-2 items-center w-full">
           <div className="flex flex-col justify-center">
             <span>Email address</span>
             <div className="absolute ml-2">
               <MailIcon />
             </div>
-            <input
-              className="px-7 py-2 rounded-lg w-[380px] border-[1px] mb-5 text-lg focus:shadow-lg focus:shadow-purple focus:outline-purple focus:border-purple  transition-all"
-              placeholder="e.g. alex@email.com"
+            <InputForm
+              placeholder="Enter your email address"
               type="email"
             />
           </div>
@@ -29,25 +29,23 @@ const RegisterPage = () => {
             <div className="absolute ml-2">
               <PassWordIcon />
             </div>
-            <input
-              className="px-7 py-2 rounded-lg w-[380px] border-[1px] text-lg mb-5 focus:shadow-lg focus:sadow-purple focus:shadow-purple focus:outline-none focus:border-purple  transition-all"
+            <InputForm
               placeholder="At least 8 characters"
               type="password"
-            />
+            /> 
           </div>
           <div className="flex flex-col justify-center">
             <span>Confirm password</span>
-            <div className="absolute mt-5 ml-2">
+            <div className="absolute ml-2">
               <PassWordIcon />
             </div>
-            <input
-              className="px-7 py-2 rounded-lg w-[380px] border-[1px] text-lg"
+            <InputForm
               placeholder="At least 8 characters"
               type="password"
             />
           </div>
         </div>
-        <button className="w-full py-3 bg-purple mt-10 rounded-lg hover:bg-soft_purple transition-all" type="submit">
+        <button className="w-full py-3 bg-purple 2xl:mt-10 rounded-lg hover:bg-soft_purple transition-all" type="submit">
           <span className="text-white tracking-wider">Create new account</span>
         </button>
         <div className="flex mt-2 justify-center w-full">

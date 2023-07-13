@@ -1,10 +1,11 @@
 import { DevlinksLargeIcon, MailIcon, PassWordIcon } from "@/components";
+import { InputForm } from "@/components/form";
 import Link from "next/link";
 
 const LoginPage = () => {
   return (
-    <main className="flex flex-col items-center justify-center h-screen">
-      <div className="flex mb-10">
+    <main className="flex flex-col items-center 2xl:justify-center h-screen">
+      <div className="flex mb-10 mt-5">
         <DevlinksLargeIcon />
       </div>
       <form className="flex flex-col bg-white rounded-xl h-1/2 w-[500px] p-16 text-dark_grey">
@@ -18,19 +19,17 @@ const LoginPage = () => {
             <div className="absolute ml-2">
               <MailIcon />
             </div>
-            <input
-              className="px-7 py-2 rounded-lg w-[380px] border-[1px] mb-5 text-lg"
-              placeholder="e.g. alex@email.com"
+            <InputForm
+              placeholder="Enter your email address"
               type="email"
             />
           </div>
           <div className="flex flex-col justify-center">
             <span>Password</span>
-            <div className="absolute mt-5 ml-2">
+            <div className="absolute ml-2">
               <PassWordIcon />
             </div>
-            <input
-              className="px-7 py-2 rounded-lg w-[380px] border-[1px] text-lg"
+            <InputForm
               placeholder="Enter your password"
               type="password"
             />
