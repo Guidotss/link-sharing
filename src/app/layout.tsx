@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={instrumentSans.className}>{children}</body>
+      <body className={`${instrumentSans.className} h-screen w-full bg-light_grey`}>{children}</body>
     </html>
   )
 }
