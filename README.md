@@ -1,6 +1,6 @@
 # Frontend Mentor - Link-sharing app
 
-![Design preview for the Link-sharing app coding challenge](./preview.jpg)
+![Design preview for the Link-sharing app coding challenge](./public/preview.jpg)
 
 ## Welcome! 👋
 
