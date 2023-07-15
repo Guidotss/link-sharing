@@ -1,3 +1,4 @@
+import { Providers } from '@/providers';
 import './globals.css'
 import type { Metadata } from 'next'
 import { Instrument_Sans } from 'next/font/google'
@@ -16,7 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${instrumentSans.className} h-screen w-full bg-light_grey`}>{children}</body>
+      <body className={`${instrumentSans.className} h-screen w-full bg-light_grey`}>
+        <Providers>
+          {children}
+        </Providers>
+      </body>
     </html>
   )
 }

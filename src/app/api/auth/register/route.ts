@@ -1,18 +1,31 @@
-import "@/database/connect"; 
-import { UserService } from "@/services"; 
+import { UserService } from "@/services";
+import { signDocument } from "@/jwt/signDocument";
 
 const userService = new UserService();
 
-
-export async function POST(req:Request) { 
-    try{
-        const { ...user } = await req.json();
-        const newUser = await userService.createUser(user);
-        if(!newUser){
-            return new Response(JSON.stringify({error:"Error creating user"}),{status:500});
+export async function POST(req: Request) {
+  try {
+    const { ...user } = await req.json();
+    const newUser = await userService.registerUser(user);
+    if (!newUser) {
+      return new Response(
+        JSON.stringify({
+          error: `User with email: ${user.email} already exist`,
+        }),
+        {
+          status: 400,
         }
-        return new Response(JSON.stringify({newUser}),{status:200});
-    }catch(error){
-        return new Response(JSON.stringify({error:"Internal Server Error"}),{status:500}); 
+      );
     }
+
+    const token = signDocument(newUser.id, newUser.email);
+
+    return new Response(JSON.stringify({ newUser, token }), {
+      status: 200,
+    });
+  } catch (error) {
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+      status: 500,
+    });
+  }
 }
