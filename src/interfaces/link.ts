@@ -1,6 +1,6 @@
 
 export interface Links {
-    id: string;
+    id?: string;
     url: string;
     name: LinksNames;
 }

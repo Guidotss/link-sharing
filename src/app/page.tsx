@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className="px-5 py-5">
       <Navbar />
-      <section className="flex gap-60 px-56">
+      <section className="flex 2xl:gap-60 gap-40 2xl:px-56 px-20">
         <div className="mt-24">
           <MockUpIcon />
         </div>
@@ -26,7 +26,7 @@ export default function Home() {
             <h3 className="text-4xl font-bold mt-10">
               Let{"'"}s get you started
             </h3>
-            <p className="w-[55%] mt-10 text-grey text-center">Use the “Add new link” button to get started. Once you have more than one link, you can reorder and edit them. We’re here to help you share your profiles with everyone!</p>
+            <p className="2xl:w-[55%] w-[90%] mt-10 text-grey text-center">Use the “Add new link” button to get started. Once you have more than one link, you can reorder and edit them. We’re here to help you share your profiles with everyone!</p>
           </div>
           <div className="w-full flex justify-end mt-20 border-t-[1px] p-5">
             <button className="bg-purple px-5 py-2 rounded-lg text-white font-semibold hover:bg-soft_purple transition-all">

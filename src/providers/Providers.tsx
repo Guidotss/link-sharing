@@ -1,5 +1,5 @@
 "use client"
-import { AuthProvider } from '@/context'
+import { AuthProvider, LinksProvider } from '@/context'
 import { FC } from 'react';
 
 interface ProvidersProps {
@@ -9,7 +9,9 @@ interface ProvidersProps {
 export const Providers:FC<ProvidersProps> = ({ children }) => {
   return (
     <AuthProvider>
+      <LinksProvider>
         { children }
+      </LinksProvider>
     </AuthProvider>
   )
 }
