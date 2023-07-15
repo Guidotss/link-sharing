@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 export const verifyToken = (token: string) => {
-  if (!process.env.JSON_SECRE) throw new Error("JSON_SECRET not found");
+  if (!process.env.JSON_SECRET) throw new Error("JSON_SECRET not found");
 
   if (!token || token.length < 10) throw new Error("Invalid token");
 

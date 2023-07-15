@@ -1,30 +1,55 @@
 "use client";
+import { useContext, useState } from "react";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
+import { useRouter } from 'next/navigation';
+import { AuthContext } from "@/context";
 import { InputForm } from "./InputForm";
 import { MailIcon, PassWordIcon } from "../ui";
 
-
-export type LoginFormProps = {
-  email: string;
-  password: string;
-};
-
 export const LoginForm = () => {
-  const {
-    handleSubmit,
-    formState: { errors },
-    register,
-  } = useForm<LoginFormProps>();
+  const { login } = useContext(AuthContext);
+  const router = useRouter(); 
+  const [form, setForm] = useState({
+    email: {
+      value: "",
+      error: false,
+    },
+    password: {
+      value: "",
+      error: false,
+    },
+  });
 
-  const handleLogin = () => {
-    console.log(errors);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!form.email.value) {
+      setForm((prev) => ({
+        ...prev,
+        email: { value: prev.email.value, error: true },
+      }));
+    }
+    if (!form.password.value) {
+      setForm((prev) => ({
+        ...prev,
+        password: { value: prev.password.value, error: true },
+      }));
+    }
+
+    const ok = await login(form.email.value, form.password.value); 
+    if (!ok) {
+      setForm((prev) => ({
+        ...prev,
+        password: { value: prev.password.value, error: true },
+      }));
+      return; 
+    }
+    router.push('/');
   };
 
   return (
     <form
       className="flex flex-col bg-white rounded-xl h-1/2 w-[500px] p-16 text-dark_grey"
-      onSubmit={handleSubmit(handleLogin)}
+      onSubmit={handleSubmit}
     >
       <h3 className="text-4xl font-bold">Login</h3>
       <span className="mt-2 text text-dark_grey opacity-80 text-md">
@@ -32,7 +57,7 @@ export const LoginForm = () => {
       </span>
       <div className="mt-10 text-sm flex flex-col gap-2 items-center w-full">
         <div className="flex flex-col justify-center">
-          <span>Email address</span>
+          <span className={`${form.email.error ? 'text-red': ''}`}>Email address</span>
           <div className="absolute ml-2">
             <MailIcon />
           </div>
@@ -40,18 +65,19 @@ export const LoginForm = () => {
             placeholder="Enter your email address"
             type="email"
             name="email"
-            register={register}
+            value={form.email.value}
+            error={form.email.error}
             errorMessage={"Can't be empty"}
-            error={errors.email}
+            setLoginForm={setForm}
           />
-          {errors.email && (
+          {form.email.error && (
             <span className="text-red text-sm absolute ml-64">
-              {errors.email.message}
+              Cant be empty
             </span>
           )}
         </div>
         <div className="flex flex-col justify-center">
-          <span>Password</span>
+          <span className={`${form.password.error ? 'text-red': ''}`}>Password</span>
           <div className="absolute ml-2">
             <PassWordIcon />
           </div>
@@ -60,13 +86,14 @@ export const LoginForm = () => {
             placeholder="Enter your password"
             type="password"
             name="password"
-            register={register}
+            value={form.password.value}
             errorMessage={"Please check again"}
-            error={errors.password}
+            error={form.password.error}
+            setLoginForm={setForm}
           />
-          {errors.password && (
+          {form.password.error && (
             <span className="text-red text-sm absolute ml-64">
-              {errors.password.message}
+              Please check again
             </span>
           )}
         </div>

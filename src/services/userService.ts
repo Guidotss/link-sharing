@@ -85,4 +85,25 @@ export class UserService {
       throw new Error(`An error occurred while logging in the user: ${error}`);
     }
   }
+
+  async getUserById(id: string) {
+    try {
+      this.prisma.$connect();
+      const user = await this.prisma.user.findUnique({
+        where: { id },
+        select: {
+          id: true,
+          email: true,
+          firtsName: true,
+          lastName: true,
+          password: false,
+        },
+      });
+      if (!user) return null;
+      this.prisma.$disconnect();
+      return user;
+    } catch (error) {
+      throw new Error(`An error occurred while getting the user: ${error}`);
+    }
+  }
 }

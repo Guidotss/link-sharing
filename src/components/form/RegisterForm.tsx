@@ -1,33 +1,82 @@
-"use client"
+"use client";
+import { useContext, useState } from "react";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
+import { AuthContext } from "@/context";
 import { InputForm } from "./InputForm";
 import { MailIcon, PassWordIcon } from "../ui";
 
-export type RegisterFormProps = {
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
-
 export const RegisterForm = () => {
-  const {
-    handleSubmit,
-    formState: { errors },
-    register,
-  } = useForm<RegisterFormProps>();
+  const { register } = useContext(AuthContext);
+  const router = useRouter();
+  const [form, setForm] = useState({
+    email: {
+      value: "",
+      error: false,
+    },
+    password: {
+      value: "",
+      error: false,
+    },
+    confirmPassword: {
+      value: "",
+      error: false,
+    },
+  });
 
-  const handleRegister = () => {}
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!form.email.value) {
+      setForm((prev) => ({
+        ...prev,
+        email: { value: prev.email.value, error: true },
+      }));
+    }
+    if (!form.password.value) {
+      setForm((prev) => ({
+        ...prev,
+        password: { value: prev.password.value, error: true },
+      }));
+    }
+    if (!form.confirmPassword.value) {
+      setForm((prev) => ({
+        ...prev,
+        confirmPassword: { value: prev.confirmPassword.value, error: true },
+      }));
+    }
+
+    if (form.password.value !== form.confirmPassword.value) {
+      setForm((prev) => ({
+        ...prev,
+        confirmPassword: { value: prev.confirmPassword.value, error: true },
+      }));
+    }
+
+    const ok = await register(form.email.value, form.password.value);
+    if (!ok) {
+      setForm((prev) => ({
+        ...prev,
+        password: { value: prev.password.value, error: true },
+      }));
+      return;
+    }
+    router.push("/");
+  };
 
   return (
-    <form className="flex flex-col bg-white rounded-xl h-1/2 w-[500px] p-16 text-dark_grey" onSubmit={handleSubmit(handleRegister)}>
+    <form
+      className="flex flex-col bg-white rounded-xl h-1/2 w-[500px] p-16 text-dark_grey"
+      onSubmit={handleRegister}
+    >
       <h3 className="text-4xl font-bold">Create account</h3>
       <span className="mt-2 text text-dark_grey opacity-80 text-md">
         Let’s get you started sharing your links!
       </span>
       <div className="2xl:mt-10 mt-8 text-sm flex flex-col gap-2 items-center w-full">
         <div className="flex flex-col justify-center">
-          <span>Email address</span>
+          <span className={`${form.email.error ? "text-red" : ""}`}>
+            Email address
+          </span>
           <div className="absolute ml-2">
             <MailIcon />
           </div>
@@ -35,18 +84,21 @@ export const RegisterForm = () => {
             placeholder="Enter your email address"
             type="email"
             name="email"
-            register={register}
             errorMessage={"Can't be empty"}
-            error={errors.email}
+            value={form.email.value}
+            error={form.email.error}
+            setRegisterForm={setForm}
           />
-          {errors.email && (
+          {form.email.error && (
             <span className="text-red text-sm absolute ml-64">
-              {errors.email.message}
+              Cant be empty
             </span>
           )}
         </div>
         <div className="flex flex-col justify-center focus:shadow-lg">
-          <span>Create password</span>
+          <span className={`${form.password.error ? "text-red" : ""}`}>
+            Create password
+          </span>
           <div className="absolute ml-2">
             <PassWordIcon />
           </div>
@@ -54,18 +106,21 @@ export const RegisterForm = () => {
             placeholder="At least 8 characters"
             type="password"
             name="password"
-            register={register}
+            value={form.password.value}
+            error={form.password.error}
+            setRegisterForm={setForm}
             errorMessage={"Can't be empty"}
-            error={errors.password}
           />
-          {errors.email && (
+          {form.password.error && (
             <span className="text-red text-sm absolute ml-64">
-              {errors.password?.message}
+              Cant be empty
             </span>
           )}
         </div>
         <div className="flex flex-col justify-center">
-          <span>Confirm password</span>
+          <span className={`${form.confirmPassword.error ? "text-red" : ""}`}>
+            Confirm password
+          </span>
           <div className="absolute ml-2">
             <PassWordIcon />
           </div>
@@ -73,13 +128,14 @@ export const RegisterForm = () => {
             placeholder="At least 8 characters"
             type="password"
             name="confirmPassword"
-            register={register}
+            value={form.confirmPassword.value}
             errorMessage={"Can't be empty"}
-            error={errors.confirmPassword}
+            error={form.confirmPassword.error}
+            setRegisterForm={setForm}
           />
-          {errors.email && (
+          {form.confirmPassword.error && (
             <span className="text-red text-sm absolute ml-64">
-              {errors.confirmPassword?.message}
+              Cant be empty
             </span>
           )}
         </div>
