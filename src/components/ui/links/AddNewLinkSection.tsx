@@ -1,7 +1,7 @@
 "use client";
 import { useState } from 'react';
 import { EmptySection } from "./EmptySection";
-import { AddLinksForm } from '@/components/form';
+import { AddLinksForm } from '@/components/form/links/AddLinksForm';
 
 export const AddNewLinkSection = () => {
   const [ isSelectOpen, setIsSelectOpen ]  = useState<boolean>(false); 

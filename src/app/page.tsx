@@ -2,7 +2,7 @@ import { AddNewLinkSection, MockUpIcon, Navbar } from "@/components";
 
 export default function Home() {
   return (
-    <main className="px-5 py-5">
+    <main className="px-5 py-5 bg-light_grey">
       <Navbar />
       <section className="flex 2xl:gap-60 gap-40 2xl:px-56 px-20">
         <div className="mt-24">
