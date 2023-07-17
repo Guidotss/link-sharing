@@ -1,14 +1,21 @@
 "use client";
-import React, { FC, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import { ChevronDownIcon, FrontendMentorIcon } from "@/components/ui";
 import { selectOptions } from "@/constants/selectOptions";
+import { Links } from "@/interfaces";
+import { LinksContext } from "@/context";
 
 interface LinksCustomSelectProps {
   setLink: React.Dispatch<React.SetStateAction<{ name: string; url: string }>>;
+  link?: Links;
 }
 
-export const LinksCustomSelect:FC<LinksCustomSelectProps> = ({ setLink }) => {
+export const LinksCustomSelect: FC<LinksCustomSelectProps> = ({
+  setLink,
+  link,
+}) => {
   const [isSelectOpen, setIsSelectOpen] = useState<boolean>(false);
+  const { links } = useContext(LinksContext);
   const [selectedOption, setSelectedOption] = useState({
     name: "FrontendMentor",
     icon: () => FrontendMentorIcon(),
@@ -26,11 +33,11 @@ export const LinksCustomSelect:FC<LinksCustomSelectProps> = ({ setLink }) => {
         onClick={() => setIsSelectOpen(!isSelectOpen)}
       >
         <div className="flex items-center gap-2">
-            {selectedOption.icon()}
-            {selectedOption.name}
+          {selectedOption.icon()}
+          <span>{selectedOption.name}</span>
         </div>
         <div>
-            <ChevronDownIcon/>
+          <ChevronDownIcon />
         </div>
       </div>
       {isSelectOpen && (
