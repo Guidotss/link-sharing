@@ -6,13 +6,13 @@ import { usePathname } from 'next/navigation'
 export const Navbar = () => {
   const pathName = usePathname();
   return (
-    <header className="flex justify-around items-center">
+    <header className="flex justify-between items-center bg-white py-4 px-10 rounded-lg mx-20">
       <div className="flex items-center">
         <DevLinksIcon />
         <h3 className="text-2xl font-bold">devlinks</h3>
       </div>
-      <div className="flex items-center gap-10">
-        <div className="flex items-center bg-light_purple px-5 py-2 rounded-lg">
+      <div className="flex items-center gap-5">
+        <div className="flex items-center bg-light_purple px-7 py-2 rounded-lg">
           <HeaderLinkIcon fill="#633CFF" />
           <Link href="/links">
             <span className="text-md text-purple font-semibold">Links</span>

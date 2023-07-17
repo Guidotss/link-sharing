@@ -1,9 +1,13 @@
 "use client";
+import React, { FC, useState } from "react";
 import { ChevronDownIcon, FrontendMentorIcon } from "@/components/ui";
 import { selectOptions } from "@/constants/selectOptions";
-import React, { useState } from "react";
 
-export const LinksCustomSelect = () => {
+interface LinksCustomSelectProps {
+  setLink: React.Dispatch<React.SetStateAction<{ name: string; url: string }>>;
+}
+
+export const LinksCustomSelect:FC<LinksCustomSelectProps> = ({ setLink }) => {
   const [isSelectOpen, setIsSelectOpen] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState({
     name: "FrontendMentor",
@@ -30,7 +34,7 @@ export const LinksCustomSelect = () => {
         </div>
       </div>
       {isSelectOpen && (
-        <div className="h-[200px] overflow-y-scroll absolute bg-white w-[47%] z-10 shadow-2xl scrollbar mt-5 rounded-lg">
+        <div className="h-[200px] overflow-y-scroll absolute bg-white w-[34%] z-10 shadow-2xl scrollbar mt-5 rounded-lg">
           <>
             {selectOptions.map((option, index) => (
               <div
@@ -38,6 +42,7 @@ export const LinksCustomSelect = () => {
                 className="flex gap-2 items-center text-lg border-b-[1px] p-2 cursor-pointer"
                 onClick={() => {
                   setSelectedOption({ name: option.name, icon: option.icon });
+                  setLink((prev) => ({ ...prev, name: option.name }));
                   setIsSelectOpen(false);
                 }}
               >

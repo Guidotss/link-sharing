@@ -2,6 +2,7 @@ export interface Links {
   id?: string;
   url: string;
   name: LinksNames;
+  userId: string; 
 }
 
 type LinksNames =
