@@ -4,6 +4,7 @@ import { LinksState } from '.';
 
 type LinksActionType = 
     | { type: "[LINKS] - Create_link", payload: Links } 
+    | { type: "[LINKS] - Set_current_link", payload: Links } 
 
 
 export const linksReducer = (state: LinksState, action: LinksActionType) => {
@@ -12,6 +13,11 @@ export const linksReducer = (state: LinksState, action: LinksActionType) => {
             return {
                 ...state,
                 links: [...state.links!, action.payload]
+            }
+        case "[LINKS] - Set_current_link":
+            return {
+                ...state,
+                currentLink: action.payload
             }
         default: 
             return {

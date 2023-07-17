@@ -5,6 +5,7 @@ import { createContext } from 'react';
 
 interface LinksContextProps {
     links: Links[] | null; 
+    currentLink: Links | null;
     createNewLink: (link: Links) => void;
 }
 

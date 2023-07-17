@@ -11,6 +11,7 @@ interface LinkProviderProps {
 
 export interface LinksState {
     links: Links[] | null;
+    currentLink: Links | null;
 }
 
 
@@ -21,6 +22,7 @@ const LINKS_INITIAL_STATE: LinksState = {
             url: "https://github.com/Guidotss"
         }
     ],
+    currentLink: null,
 }
 
 
@@ -30,6 +32,13 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
     const createNewLink = (link: Links) => {
         dispatch({
             type: '[LINKS] - Create_link',
+            payload: link,
+        });
+    }
+
+    const setCurrentLink = (link:Links) => {
+        dispatch({
+            type: '[LINKS] - Set_current_link',
             payload: link,
         });
     }
