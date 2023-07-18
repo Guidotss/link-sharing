@@ -1,6 +1,10 @@
+import { FC } from "react";
 
+interface DevToIconProps {
+  fill?: string;
+}
 
-export const DevToIcon = () => {
+export const DevToIcon:FC<DevToIconProps> = (params) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -11,7 +15,7 @@ export const DevToIcon = () => {
     >
       <g clipPath="url(#a)">
         <path
-          fill="#737373"
+          fill={params?.fill || "#737373"}
           d="M12.25 0h-8.5A3.75 3.75 0 0 0 0 3.75v8.5A3.75 3.75 0 0 0 3.75 16h8.5A3.75 3.75 0 0 0 16 12.25v-8.5A3.75 3.75 0 0 0 12.25 0Z"
         />
         <path

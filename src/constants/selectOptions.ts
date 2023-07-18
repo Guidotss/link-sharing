@@ -17,58 +17,72 @@ export const selectOptions = [
     {
         name: "Github",
         icon: GitHubIcon,
+        bgColor: "dark_grey"
     },
     {
         name: "CodePen",
         icon: CodePenIcon,
+        bgColor: "white"
     },
     {
         name: "StackOverFlow",
-        icon: StackOverFlowIcon
+        icon: StackOverFlowIcon,
+        bgColor: "stackoverflow"
     },
     {
         name: "FreeCodeCamp",
-        icon: FreeCodeCampIcon
+        icon: FreeCodeCampIcon,
+        bgColor: "freecodecamp"
     },
     {
         name: "FrontendMentor",
-        icon: FrontendMentorIcon
+        icon: FrontendMentorIcon,
+        bgColor: "white"
     },
     {
         name: "LinkedIn",
-        icon: LinkedingIcon
+        icon: LinkedingIcon,
+        bgColor: "linkedin"
     },
     {
         name: "Twitter",
-        icon: TwitterIcon
+        icon: TwitterIcon,
+        bgColor: "twitter"
     },
     {
         name: "Twitch",
-        icon: TwitchIcon
+        icon: TwitchIcon,
+        bgColor: "twitch"
     },
     {
         name: "Youtube",
-        icon: YoutubeIcon
+        icon: YoutubeIcon,
+        bgColor: "red"
     },
     {
         name: "DevTo",
-        icon: DevToIcon
+        icon: DevToIcon,
+        bgColor: "white"
     },
     {
         name: "CodeWars",
-        icon: CodeWarsIcon
+        icon: CodeWarsIcon,
+        bgColor: "codewars"
     },
     {
         name: "GitLab",
-        icon: GitLabsIcon
+        icon: GitLabsIcon,
+        bgColor: "gitlab"
     },
     {
         name: "HashNode",
-        icon: HashNodeIcon
+        icon: HashNodeIcon,
+        bgColor: "hashnode"
     },
     {
         name: "Facebook",
-        icon: FacebookIcon
+        icon: FacebookIcon,
+        bgColor: "facebook"
     }
     
 ]

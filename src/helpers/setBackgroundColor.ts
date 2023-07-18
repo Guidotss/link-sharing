@@ -1,32 +1,32 @@
 export const setBackgroundColor = (name: string) => {
-    switch(name) {
-        case "github": 
-            return "bg-dark-grey"
-        case "frontendMentor":
-            return "bg-white"
-        case "twitter":
-            return "bg-twitter"
-        case "linkedin":
-            return "bg-linkedin"
-        case "youtube":
-            return "bg-red"
-        case "facebook":
-            return "bg-facebook"
-        case "twitch":
-            return "bg-twitch"
-        case "devto":
-            return "bg-grey"
-        case "codewars":
-            return "bg-codewars"
-        case "freecodecamp":
-            return "bg-freecodecamp"
-        case "gitlab":
-            return "bg-gitlab"
-        case "hashnode":
-            return "bg-hashnode"
-        case "stackoverflow":
-            return "bg-stackoverflow"
-        default:
-            return "bg-white"
-    }
-}
+  switch (name) {
+    case "github":
+      return "dark_grey";
+    case "frontendmentor":
+      return "white";
+    case "twitter":
+      return "twitter";
+    case "linkedin":
+      return "linkedin";
+    case "youtube":
+      return "red";
+    case "facebook":
+      return "facebook";
+    case "twitch":
+      return "twitch";
+    case "devto":
+      return "grey";
+    case "codewars":
+      return "codewars";
+    case "freecodecamp":
+      return "freecodecamp";
+    case "gitlab":
+      return "gitlab";
+    case "hashnode":
+      return "hashnode";
+    case "stackoverflow":
+      return "stackoverflow";
+    default:
+      return "white";
+  }
+};

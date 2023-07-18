@@ -28,7 +28,7 @@ export const LinksCustomSelect: FC<LinksCustomSelectProps> = ({
         onClick={() => setIsSelectOpen(!isSelectOpen)}
       >
         <div className="flex items-center gap-2">
-          {currentLink?.icon()}
+          {currentLink?.icon({fill: undefined})}
           <span>{currentLink?.name}</span>
         </div>
         <ChevronDownIcon />
@@ -45,7 +45,7 @@ export const LinksCustomSelect: FC<LinksCustomSelectProps> = ({
 
               }}
             >
-              {option.icon()}
+              {option.icon({fill: undefined})}
               <span>{option.name}</span>
             </div>
           ))}

@@ -12,7 +12,7 @@ export default function Home() {
       <Navbar />
       <section className="flex 2xl:gap-3 px-20 mt-14">
         <div className="bg-white flex-auto 2xl:h-[75vh] h-full w-full flex items-center justify-center rounded-lg">
-          <div className="absolute -mt-7"> 
+          <div className="-mt-16"> 
             <LinksGrid/>
           </div>
           <MockUpIcon />
