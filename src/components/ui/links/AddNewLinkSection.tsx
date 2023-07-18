@@ -1,11 +1,13 @@
 "use client";
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { EmptySection } from "./EmptySection";
 import { AddLinksForm } from '@/components/form/links/AddLinksForm';
+import { LinksContext } from '@/context';
 
 
 export const AddNewLinkSection = () => {
   const [ isSelectOpen, setIsSelectOpen ]  = useState<boolean>(false); 
+  const {  createNewLink } = useContext(LinksContext)
 
   return (
     <>
@@ -17,7 +19,10 @@ export const AddNewLinkSection = () => {
         </p>
         <button 
           className="border-[1px] border-purple rounded-lg w-full py-2 mt-10 font-semibold text-purple hover:bg-light_purple transition-all"
-          onClick={() => setIsSelectOpen(!isSelectOpen)}
+          onClick={() => { 
+            setIsSelectOpen(true);
+            createNewLink();
+          }}
         >
           + Add new link
         </button>

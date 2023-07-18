@@ -1,5 +1,4 @@
-import React, { FC } from "react";
-import { UseFormRegister, FieldErrors } from "react-hook-form/dist/types";
+import { FC } from "react";
 
 interface InputProps {
   placeholder: string;
@@ -72,17 +71,13 @@ export const InputForm: FC<InputProps> = ({
                     error: false,
                   },
                 }))
-              :  ( 
-                setRegisterForm!(
-                  (prev) => ({
-                    ...prev,
-                    [e.target.name]: {
-                      value: e.target.value,
-                      error: false,
-                    },
-                  })
-                )
-              )
+              : setRegisterForm!((prev) => ({
+                  ...prev,
+                  [e.target.name]: {
+                    value: e.target.value,
+                    error: false,
+                  },
+                }));
           }
         }}
       />

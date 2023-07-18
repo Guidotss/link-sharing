@@ -2,10 +2,10 @@ export interface Links {
   id?: string;
   url: string;
   name: LinksNames;
-  userId: string; 
+  userId: string | null; 
 }
 
-type LinksNames =
+export type LinksNames =
   | "github"
   | "frontendMentor"
   | "twitter"

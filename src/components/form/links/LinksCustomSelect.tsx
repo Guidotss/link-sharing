@@ -1,25 +1,20 @@
 "use client";
-import React, { FC, useContext, useEffect, useState } from "react";
-import { ChevronDownIcon, FrontendMentorIcon } from "@/components/ui";
+import { FC, useState } from "react";
+import { ChevronDownIcon } from "@/components/ui/";
 import { selectOptions } from "@/constants/selectOptions";
-import { Links } from "@/interfaces";
-import { LinksContext } from "@/context";
+import { Links, LinksNames } from "@/interfaces";
 
 interface LinksCustomSelectProps {
-  setLink: React.Dispatch<React.SetStateAction<{ name: string; url: string }>>;
   link?: Links;
 }
 
 export const LinksCustomSelect: FC<LinksCustomSelectProps> = ({
-  setLink,
   link,
 }) => {
   const [isSelectOpen, setIsSelectOpen] = useState<boolean>(false);
-  const { links } = useContext(LinksContext);
-  const [selectedOption, setSelectedOption] = useState({
-    name: "FrontendMentor",
-    icon: () => FrontendMentorIcon(),
-  });
+
+  const currentLink = selectOptions.find((option) => option.name.toLocaleLowerCase() === link?.name.toLocaleLowerCase());
+
 
   return (
     <>
@@ -33,31 +28,27 @@ export const LinksCustomSelect: FC<LinksCustomSelectProps> = ({
         onClick={() => setIsSelectOpen(!isSelectOpen)}
       >
         <div className="flex items-center gap-2">
-          {selectedOption.icon()}
-          <span>{selectedOption.name}</span>
+          {currentLink?.icon()}
+          <span>{currentLink?.name}</span>
         </div>
-        <div>
-          <ChevronDownIcon />
-        </div>
+        <ChevronDownIcon />
       </div>
       {isSelectOpen && (
         <div className="h-[200px] overflow-y-scroll absolute bg-white w-[34%] z-10 shadow-2xl scrollbar mt-5 rounded-lg">
-          <>
-            {selectOptions.map((option, index) => (
-              <div
-                key={index}
-                className="flex gap-2 items-center text-lg border-b-[1px] p-2 cursor-pointer"
-                onClick={() => {
-                  setSelectedOption({ name: option.name, icon: option.icon });
-                  setLink((prev) => ({ ...prev, name: option.name }));
-                  setIsSelectOpen(false);
-                }}
-              >
-                {option.icon()}
-                <span>{option.name}</span>
-              </div>
-            ))}
-          </>
+          {selectOptions.map((option, index) => (
+            <div
+              key={index}
+              className="flex gap-2 items-center text-lg border-b-[1px] p-2 cursor-pointer"
+              onClick={() => {
+                setIsSelectOpen(false);
+                link!.name = option.name as LinksNames;  
+
+              }}
+            >
+              {option.icon()}
+              <span>{option.name}</span>
+            </div>
+          ))}
         </div>
       )}
     </>
