@@ -1,5 +1,4 @@
 import { DevlinksLargeIcon, MailIcon, PassWordIcon } from "@/components";
-import { useForm } from 'react-hook-form';
 import { RegisterForm } from "@/components/form";
 
 
