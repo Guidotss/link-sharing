@@ -6,7 +6,7 @@ interface LinksContextProps {
   links: Links[] | null;
   currentLink: Links | null;
   createNewLink: (link?: Links) => void;
-  setCurrentLink: (id: string) => void;
+  setCurrentLink: (id: string, url?: string) => void;
 }
 
 export const LinksContext = createContext<LinksContextProps>(

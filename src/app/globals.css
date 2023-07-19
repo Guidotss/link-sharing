@@ -4,7 +4,11 @@
 
 .scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #4A5568 #2D3748;
+  scrollbar-color: #4a5568 #2d3748;
+}
+
+.dark_grey{ 
+  background-color: #333333;
 }
 
 .scrollbar::-webkit-scrollbar {
@@ -12,3 +16,36 @@
   border-radius: 5px;
 }
 
+.stackoverflow {
+  background-color: #ec7100;
+}
+.freecodecamp {
+  background-color: #302267;
+}
+.linkedin {
+  background-color: #2d68ff;
+}
+.facebook {
+  background-color: #2442ac;
+}
+.hashnode {
+  background-color: #0330d1;
+}
+.dark_grey {
+  background-color: #333333;
+}
+.codewars {
+  background-color: #8a1a50;
+}
+.twitter {
+  background-color: #43b7e9;
+}
+.twitch {
+  background-color: #ee3fc8;
+}
+.gitlab {
+  background-color: #eb4925;
+}
+.red {
+  background-color: #ff3939;
+}

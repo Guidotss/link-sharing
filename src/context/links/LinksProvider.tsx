@@ -18,38 +18,35 @@ const LINKS_INITIAL_STATE: LinksState = {
 };
 
 export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
-  const [state, dispatch] = useReducer(linksReducer, LINKS_INITIAL_STATE);
+  const [state, dispatch] = useReducer(linksReducer, LINKS_INITIAL_STATE); 
 
-  console.log(state.currentLink); 
-
-  const createNewLink = (link?: Links) => {
+  const createNewLink = () => {
     if (state.links?.length === 5) return;
 
-    if(!link) {
-      const newLink = {
+    const newLink = {
+      id: `${Math.random() * 1000}`,
+      name: "github",
+      url: "",
+      userId: null,
+    } as Links;
 
-        id: `${Math.random() * 1000}`,
-        name: "frontendMentor",
-        url: "https://www.example.com",
-        userId: null,
-      } as Links;
+    dispatch({
+      type: "[LINKS] - Create_link",
+      payload: newLink,
+    });
+  };
 
+  const setCurrentLink = (id: string, url?: string) => {
+    if (url) {
       dispatch({
-        type: "[LINKS] - Create_link",
-        payload: newLink,
+        type: "[LINKS] - Set_current_link",
+        payload: {id, url },
       });
       return;
     }
     dispatch({
-      type: "[LINKS] - Create_link",
-      payload: link!,
-    });
-  };
-
-  const setCurrentLink = (id: string) => {
-    dispatch({
       type: "[LINKS] - Set_current_link",
-      payload: id,
+      payload: { id },
     });
   };
 

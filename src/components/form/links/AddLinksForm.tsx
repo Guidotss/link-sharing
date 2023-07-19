@@ -1,34 +1,33 @@
 "use client";
 
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import { LinksContext } from "@/context/links/LinksContext";
 import { LinksCustomSelect } from "./LinksCustomSelect";
 
 export const AddLinksForm = () => {
-  const { links, createNewLink, setCurrentLink } = useContext(LinksContext);
-
-  const inputRef = useRef<HTMLInputElement>(null);
+  const { links, currentLink,setCurrentLink } = useContext(LinksContext);
 
   const handleCurrentLink = (id: string) => {
     setCurrentLink(id);
-  }
+  };
+
+  console.log(currentLink); 
 
   return (
     <>
       {links?.map((link, index) => (
         <form key={index} className="flex flex-col items-center mt-10 ">
-          <div className="flex flex-col w-full bg-gray-100 p-10 rounded-lg mb-5" onClick={() => handleCurrentLink(link?.id!)}>
+          <div
+            className="flex flex-col w-full bg-gray-100 p-10 rounded-lg mb-5"
+            onClick={() => handleCurrentLink(link?.id!)}
+          >
             <div className="w-full flex justify-between">
-              <h3 className="text-grey font-semibold">
-                Link # {index + 1}
-              </h3>
+              <h3 className="text-grey font-semibold">Link # {index + 1}</h3>
               <button className="text-grey">Remove</button>
             </div>
             <div className="flex flex-col gap-10">
               <div>
-                <LinksCustomSelect
-                  link={ link }
-                />
+                <LinksCustomSelect link={link} />
               </div>
               <div>
                 <span className="text-sm text-grey">Link</span>
@@ -37,7 +36,8 @@ export const AddLinksForm = () => {
                   type="text"
                   placeholder="https://www.example.com"
                   name="url"
-                  ref={inputRef}                  
+                  value={link.url}
+                  onChange={(e) => setCurrentLink(link?.id!, e.target.value)}
                 />
               </div>
             </div>

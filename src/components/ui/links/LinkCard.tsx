@@ -1,23 +1,27 @@
 "use client";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { selectOptions } from "@/constants";
 import { Links } from "@/interfaces";
 import { RightArrowIcon } from "../icons";
-import { setBackgroundColor } from "@/helpers";
+
 
 interface LinkCardProps {
   link: Links;
 }
 
 export const LinkCard: FC<LinkCardProps> = ({ link }) => {
-  const [bgColor, setBgColor] = useState("");
-  useEffect(() => {
-    setBgColor(setBackgroundColor(link.name.toLowerCase()));
-  }, [link.name]);
+  let bgColor = selectOptions.find(
+    (option) => option.name.toLowerCase() === link.name.toLowerCase()
+  )?.bgColor;
+  if (bgColor == "white") {
+    bgColor = `bg-${bgColor}`;
+  }
+
+
 
   return (
     <div
-      className={` bg-${bgColor} rounded-lg flex justify-between items-center py-3 text-white`}
+      className={` ${bgColor} rounded-lg flex justify-between items-center py-3 text-white`}
     >
       <div className="flex items-center gap-2 ml-2 ">
         {selectOptions
@@ -25,12 +29,12 @@ export const LinkCard: FC<LinkCardProps> = ({ link }) => {
             (option) => option.name.toLowerCase() === link.name.toLowerCase()
           )
           ?.icon({ fill: "#fff" })}
-        <h1 className={`${bgColor == "white" ? "text-black" : ""}`}>
+        <h1 className={`${bgColor == "bg-white" ? "text-black" : ""}`}>
           {link.name}
         </h1>
       </div>
-      <div className="mr-2">
-        <RightArrowIcon isWhite={bgColor == "white" ? true : false} />
+      <div className="mr-2 2xl:mr-4">
+        <RightArrowIcon isWhite={bgColor == "bg-white" ? false : true} />
       </div>
     </div>
   );
