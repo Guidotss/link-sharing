@@ -24,7 +24,7 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
     if (state.links?.length === 5) return;
 
     const newLink = {
-      id: `${Math.random() * 1000}`,
+      id: `${(Math.random() * 1000).toFixed(0)}`,
       name: "github",
       url: "",
       userId: null,
@@ -50,6 +50,23 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
     });
   };
 
+
+
+  const onDragEnd = (result: any) => { 
+    if (!result.destination) return;
+    if(result.destination.index === result.source.index) return;
+
+    const items = Array.from(state.links!);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    dispatch({
+      type: "[LINKS] - Reoder_links",
+      payload: items,
+    });
+  }
+
+
   return (
     <LinksContext.Provider
       value={{
@@ -57,6 +74,7 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
 
         createNewLink,
         setCurrentLink,
+        onDragEnd
       }}
     >
       {children}
