@@ -18,40 +18,54 @@ const LINKS_INITIAL_STATE: LinksState = {
 };
 
 export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
-  const [state, dispatch] = useReducer(linksReducer, LINKS_INITIAL_STATE);
+  const [state, dispatch] = useReducer(linksReducer, LINKS_INITIAL_STATE); 
 
-  console.log(state.currentLink); 
-
-  const createNewLink = (link?: Links) => {
+  const createNewLink = () => {
     if (state.links?.length === 5) return;
 
-    if(!link) {
-      const newLink = {
+    const newLink = {
+      id: `${(Math.random() * 1000).toFixed(0)}`,
+      name: "github",
+      url: "",
+      userId: null,
+    } as Links;
 
-        id: `${Math.random() * 1000}`,
-        name: "frontendMentor",
-        url: "https://www.example.com",
-        userId: null,
-      } as Links;
+    dispatch({
+      type: "[LINKS] - Create_link",
+      payload: newLink,
+    });
+  };
 
+  const setCurrentLink = (id: string, url?: string) => {
+    if (url) {
       dispatch({
-        type: "[LINKS] - Create_link",
-        payload: newLink,
+        type: "[LINKS] - Set_current_link",
+        payload: {id, url },
       });
       return;
     }
     dispatch({
-      type: "[LINKS] - Create_link",
-      payload: link!,
+      type: "[LINKS] - Set_current_link",
+      payload: { id },
     });
   };
 
-  const setCurrentLink = (id: string) => {
+
+
+  const onDragEnd = (result: any) => { 
+    if (!result.destination) return;
+    if(result.destination.index === result.source.index) return;
+
+    const items = Array.from(state.links!);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
     dispatch({
-      type: "[LINKS] - Set_current_link",
-      payload: id,
+      type: "[LINKS] - Reoder_links",
+      payload: items,
     });
-  };
+  }
+
 
   return (
     <LinksContext.Provider
@@ -60,6 +74,7 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
 
         createNewLink,
         setCurrentLink,
+        onDragEnd
       }}
     >
       {children}

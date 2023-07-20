@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hello-pangea/dnd": "^16.3.0",
     "@prisma/client": "^5.0.0",
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
+    "animate.css": "^4.1.1",
     "autoprefixer": "10.4.14",
     "bcrypt": "^5.1.0",
     "eslint": "8.44.0",
