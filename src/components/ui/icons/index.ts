@@ -22,3 +22,4 @@ export * from "./TwitchIcon";
 export * from "./HashNodeIcon";
 export * from "./LinkedingIcon";
 export * from "./RightArrowIcon";
+export * from './UploadImageIcon'; 
