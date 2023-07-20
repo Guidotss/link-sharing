@@ -1,4 +1,4 @@
-import { DevlinksLargeIcon, MailIcon, PassWordIcon } from "@/components";
+import { DevlinksLargeIcon } from "@/components";
 import { RegisterForm } from "@/components/form";
 
 

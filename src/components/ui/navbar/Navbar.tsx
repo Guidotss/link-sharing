@@ -1,10 +1,13 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { DevLinksIcon, HeaderLinkIcon, ProfileHeaderIcon } from "../icons";
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 export const Navbar = () => {
+  const [isHover, setIsHover] = useState(false); 
   const pathName = usePathname();
+  
   return (
     <header className="flex justify-between items-center bg-white py-4 px-10 rounded-lg mx-20">
       <div className="flex items-center">
@@ -12,16 +15,38 @@ export const Navbar = () => {
         <h3 className="text-2xl font-bold">devlinks</h3>
       </div>
       <div className="flex items-center gap-5">
-        <div className="flex items-center bg-light_purple px-7 py-2 rounded-lg">
-          <HeaderLinkIcon fill="#633CFF" />
-          <Link href="/links">
-            <span className="text-md text-purple font-semibold">Links</span>
+        <div
+          className={`flex items-center ${
+            pathName == "/" && "bg-light_purple"
+          } px-7 py-2 rounded-lg`}
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
+        >
+          <HeaderLinkIcon fill={ (isHover || pathName == '/') ? '#633CFF' : undefined } />
+          <Link href="/">
+            <span
+              className={`${
+                pathName == "/" ? "text-purple" : "text-grey"
+              } hover:text-purple text-md font-semibold`}
+            >
+              Links
+            </span>
           </Link>
         </div>
-        <div className="flex items-center px-5 py-2 rounded-lg ">
-          <ProfileHeaderIcon />
+        <div
+          className={`flex items-center ${
+            pathName == "/profile" && "bg-light_purple"
+          } px-5 py-2 rounded-lg`}
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
+        >
+          <ProfileHeaderIcon fill={ (isHover || pathName == '/profile') ? '#633CFF' : undefined } />
           <Link href="profile">
-            <span className="text-md text-grey font-semibold hover:text-purple transition-all">
+            <span
+              className={`text-md ${
+                pathName == "/profile" ? "text-purple" : "text-grey"
+              } font-semibold hover:text-purple transition-all`}
+            >
               Profile Details
             </span>
           </Link>
