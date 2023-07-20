@@ -11,17 +11,28 @@ export const UpdateProfileSection = () => {
           Add your details to create a personal touch to your profile.
         </p>
       </div>
-      <div className="flex justify-between bg-light_grey py-4 items-center w-full">
+      <div className="flex justify-between bg-light_grey py-4 items-center w-full cursor-pointer">
         <h3 className="text-grey px-10">Profile picture</h3>
         <div className="bg-light_purple px-14 py-20 rounded-xl">
           <div className="flex flex-col justify-center items-center">
-            <UploadImageIcon />
-            <h3 className="text-purple font-semibold text-lg">
+            <label htmlFor="raised-button-file" className="cursor-pointer"> 
+                <UploadImageIcon />
+            </label>
+            <input
+              type="file"
+              name="file"
+              id="raised-button-file"
+              accept="image/*"
+              style={{ display: "none" }}
+            />
+
+            <label htmlFor="raised-button-file"  className="text-purple font-semibold text-lg cursor-pointer">
               + Upload Image
-            </h3>
+            </label>
           </div>
         </div>
-        <span className="text-sm w-[240px]">
+
+        <span className="text-sm w-[240px] text-grey">
           Image must be below 1024x1024px. Use PNG or JPG format.
         </span>
       </div>

@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.11.2",
+    "@cloudinary/url-gen": "^1.10.2",
     "@hello-pangea/dnd": "^16.3.0",
     "@prisma/client": "^5.0.0",
     "@types/node": "20.4.2",
