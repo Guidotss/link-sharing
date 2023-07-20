@@ -97,6 +97,7 @@ export class UserService {
           firtsName: true,
           lastName: true,
           password: false,
+          image: true,
         },
       });
       if (!user) return null;
@@ -105,5 +106,23 @@ export class UserService {
     } catch (error) {
       throw new Error(`An error occurred while getting the user: ${error}`);
     }
+  }
+
+  async updateUserImage(id: string, image: string) {
+    const userUpdated = await this.prisma.user.update({
+      where: { id },
+      data: { image },
+      select: {
+        id: false,
+        email: false,
+        firtsName: false,
+        lastName: false,
+        image: true,
+        links: false,
+        password: false,
+      },
+    });
+
+    return userUpdated;
   }
 }

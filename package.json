@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@cloudinary/react": "^1.11.2",
-    "@cloudinary/url-gen": "^1.10.2",
     "@hello-pangea/dnd": "^16.3.0",
     "@prisma/client": "^5.0.0",
     "@types/node": "20.4.2",
@@ -18,7 +17,9 @@
     "@types/react-dom": "18.2.7",
     "animate.css": "^4.1.1",
     "autoprefixer": "10.4.14",
+    "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
+    "cloudinary": "^1.38.0",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.9",
     "js-cookie": "^3.0.5",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/formidable": "^3.4.0",
     "@types/js-cookie": "^3.0.3",
     "@types/jsonwebtoken": "^9.0.2",
     "prisma": "^5.0.0"

@@ -4,6 +4,7 @@ import { useReducer, FC, useEffect } from "react";
 import { AuthContext, authReducer } from ".";
 import { User } from "@/interfaces";
 import Cookies from "js-cookie";
+import { uploadUserImage } from "@/helpers";
 
 interface AuthProviderProps {
   children: React.ReactNode;
@@ -126,6 +127,33 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     return true;
   };
 
+  const updateUserImage = async (file: File) => { 
+    const token = Cookies.get("token");
+    if(!token) { 
+      dispatch({ 
+        type: "[AUTH] - logout"
+      }); 
+    }
+
+    const url = await uploadUserImage(file);
+    const response = await fetch("http://localhost:3000/api/auth/update-image", {
+      method: "PUT",
+      body: JSON.stringify({ image: url }),
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });  
+
+    const data = await response.json();
+    if(data.ok){
+      dispatch({ 
+        type: "[AUTH] - Update_user_image",
+        payload: data.image
+      }); 
+    }
+
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -134,6 +162,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         login,
         logout,
         register,
+        updateUserImage
       }}
     >
       {children}
