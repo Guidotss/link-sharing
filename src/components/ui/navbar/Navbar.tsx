@@ -20,7 +20,7 @@ export const Navbar = () => {
         </div>
         <div className="flex items-center px-5 py-2 rounded-lg ">
           <ProfileHeaderIcon />
-          <Link href="profile-details">
+          <Link href="profile">
             <span className="text-md text-grey font-semibold hover:text-purple transition-all">
               Profile Details
             </span>
