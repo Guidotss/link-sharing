@@ -67,6 +67,7 @@ export const RegisterForm = () => {
     <form
       className="flex flex-col bg-white rounded-xl h-1/2 w-[500px] p-16 text-dark_grey"
       onSubmit={handleRegister}
+      
     >
       <h3 className="text-4xl font-bold">Create account</h3>
       <span className="mt-2 text text-dark_grey opacity-80 text-md">

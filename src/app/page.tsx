@@ -1,4 +1,4 @@
-import { MockUpIcon, Navbar, AddNewLinkSection, LinksGrid } from "@/components";
+import { Navbar, AddNewLinkSection, LinksGrid, MockUpIcon  } from "@/components";
 
 export default function Home() {
   return (

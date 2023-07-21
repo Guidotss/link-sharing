@@ -1,14 +1,23 @@
 import { DevlinksLargeIcon } from "@/components"; 
 import { LoginForm } from "@/components/form";
 
+import { Suspense } from "react";
 
-const LoginPage = () => {
+
+const LoginPage = async () => {
+
+  
+  
+
+
   return (
     <main className="flex flex-col items-center 2xl:justify-center h-screen">
       <div className="flex mb-10 mt-5">
         <DevlinksLargeIcon />
       </div>
-      <LoginForm/>
+      <Suspense fallback={<p>Loading...</p>}>
+        <LoginForm/>
+      </Suspense>
     </main>
   );
 };

@@ -1,3 +1,4 @@
+
 import { FC } from "react";
 
 interface InputProps {
@@ -61,6 +62,7 @@ export const InputForm: FC<InputProps> = ({
         name={name}
         type={type}
         value={value}
+        autoComplete={type === "password" ? "new-password" : "on"}
         onChange={(e) => {
           {
             setLoginForm

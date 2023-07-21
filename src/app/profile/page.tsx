@@ -1,4 +1,4 @@
-import { LinksGrid, MockUpIcon, Navbar, UpdateProfileSection } from "@/components";
+import { LinksGrid, MockUpIcon, MockupProfile, Navbar, UpdateProfileSection } from "@/components";
 
 function ProfilePage() {
   return (
@@ -9,7 +9,7 @@ function ProfilePage() {
           <div className="-mt-16">
             <LinksGrid />
           </div>
-          <MockUpIcon  isInProfile/>
+          <MockupProfile/>
         </div>
         <div className="w-full bg-white min-h-[75vh] items-center justify-center rounded-lg p-10"> 
           <UpdateProfileSection/>

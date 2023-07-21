@@ -1,14 +1,14 @@
-"use client";
+"use client"
 import { useContext, useState } from "react";
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import { AuthContext } from "@/context";
 import { InputForm } from "./InputForm";
 import { MailIcon, PassWordIcon } from "../ui";
 
 export const LoginForm = () => {
   const { login } = useContext(AuthContext);
-  const router = useRouter(); 
+  const router = useRouter();
   const [form, setForm] = useState({
     email: {
       value: "",
@@ -35,21 +35,22 @@ export const LoginForm = () => {
       }));
     }
 
-    const ok = await login(form.email.value, form.password.value); 
+    const ok = await login(form.email.value, form.password.value);
     if (!ok) {
       setForm((prev) => ({
         ...prev,
         password: { value: prev.password.value, error: true },
       }));
-      return; 
+      return;
     }
-    router.push('/');
+    router.push("/");
   };
 
   return (
     <form
       className="flex flex-col bg-white rounded-xl h-1/2 w-[500px] p-16 text-dark_grey"
       onSubmit={handleSubmit}
+      
     >
       <h3 className="text-4xl font-bold">Login</h3>
       <span className="mt-2 text text-dark_grey opacity-80 text-md">
@@ -57,7 +58,9 @@ export const LoginForm = () => {
       </span>
       <div className="mt-10 text-sm flex flex-col gap-2 items-center w-full">
         <div className="flex flex-col justify-center">
-          <span className={`${form.email.error ? 'text-red': ''}`}>Email address</span>
+          <span className={`${form.email.error ? "text-red" : ""}`}>
+            Email address
+          </span>
           <div className="absolute ml-2">
             <MailIcon />
           </div>
@@ -77,7 +80,9 @@ export const LoginForm = () => {
           )}
         </div>
         <div className="flex flex-col justify-center">
-          <span className={`${form.password.error ? 'text-red': ''}`}>Password</span>
+          <span className={`${form.password.error ? "text-red" : ""}`}>
+            Password
+          </span>
           <div className="absolute ml-2">
             <PassWordIcon />
           </div>
