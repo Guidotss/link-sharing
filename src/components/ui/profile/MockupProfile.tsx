@@ -19,7 +19,7 @@ export const MockupProfile = () => {
       <div
         className={`${
           user?.image ? "absolute" : "hidden"
-        } 2xl:top-56 2xl:ml-[6rem] mt-6`}
+        } 2xl:top-56 2xl:ml-[6rem] mt-6 sm:top-44 sm:ml-[6rem] flex items-center justify-center`}
       >
         <div className="rounded-full">
           <Image
@@ -38,7 +38,7 @@ export const MockupProfile = () => {
       <div
         className={`${
           user?.firstName && user?.lastName ? "absolute" : "hidden"
-        } 2xl:top-[370px] 2xl:ml-[60px] flex flex-col items-center justify-center`}
+        } 2xl:top-[370px] 2xl:ml-[60px] sm:top-[320px] sm:ml-[50px] flex flex-col items-center justify-center`}
       >
         <div className="flex gap-2 text-dark_grey text-2xl">
           <span className="font-bold">{user?.firstName}</span>

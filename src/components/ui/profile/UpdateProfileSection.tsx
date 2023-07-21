@@ -15,7 +15,7 @@ export const UpdateProfileSection = () => {
         <div className="flex flex-col justify-center items-center">
           <UploadUserImage />
         </div>
-        <span className="text-sm w-[240px] text-grey">
+        <span className="text-sm 2xl:w-[240px] sm:w-[150px] text-grey">
           Image must be below 1024x1024px. Use PNG or JPG format.
         </span>
       </div>

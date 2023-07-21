@@ -70,7 +70,7 @@ export const InputForm: FC<InputProps> = ({
   return (
     <>
       <input
-        className={`px-7 py-2 rounded-lg w-[380px] border-[1px] text-lg mb-5 focus:shadow-lg ${
+        className={`px-7 py-2 rounded-lg 2xl:w-[380px] sm:w-[300px] border-[1px] text-lg mb-5 focus:shadow-lg ${
           !error
             ? "focus:sadow-purple focus:shadow-purple focus:outline-none focus:border-purple  transition-all"
             : "border-red focus:border-red focus:outline-none transition-all shadow-none"

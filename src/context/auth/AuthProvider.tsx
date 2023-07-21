@@ -63,6 +63,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         headers: { "Content-Type": "application/json" },
       });
       const data = await response.json();
+      
       if (data.ok) {
         Cookies.set("token", data.token);
         const { user } = data as { user: User };

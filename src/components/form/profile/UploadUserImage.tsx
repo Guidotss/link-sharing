@@ -24,7 +24,7 @@ export const UploadUserImage = () => {
         />
       ) : (
         <>
-          <div className="bg-light_purple px-14 py-20 rounded-xl flex flex-col items-center">
+          <div className="bg-light_purple 2xl:px-14 2xl:py-20 sm:px-1 sm:py-6 rounded-xl flex flex-col items-center">
             <label htmlFor="raised-button-file" className="cursor-pointer">
               <UploadImageIcon />
             </label>

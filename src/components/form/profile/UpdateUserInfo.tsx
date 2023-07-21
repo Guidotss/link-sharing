@@ -12,7 +12,7 @@ export const UpdateUserInfo = () => {
   return (
     <>
       <form
-        className="bg-light_grey flex flex-col px-10"
+        className="bg-light_grey flex flex-col 2xl:px-10"
         onSubmit={handleSubmit}
       >
         <div className="flex justify-between items-center">
