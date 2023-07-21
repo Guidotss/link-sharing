@@ -4,6 +4,7 @@ interface MockUpIconProps {
   isInProfile?: boolean;
   userImage?: boolean;
   firtsName?: boolean;
+  lastName?: boolean;
   email?: boolean;
 }
 
@@ -12,6 +13,7 @@ export const MockUpIcon: FC<MockUpIconProps> = ({
   userImage,
   firtsName,
   email,
+  lastName,
 }) => {
   return (
     <svg
@@ -32,7 +34,7 @@ export const MockUpIcon: FC<MockUpIconProps> = ({
       />
       {userImage ? null : <circle cx="153.5" cy="112" r="48" fill="#EEE" />}
 
-      {firtsName ? null : (
+      {(firtsName && lastName) ? null : (
         <rect width="160" height="16" x="73.5" y="185" fill="#EEE" rx="8" />
       )}
 

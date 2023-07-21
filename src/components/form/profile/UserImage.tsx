@@ -1,7 +1,7 @@
 "use client";
 import { UploadImageIcon } from "@/components/ui";
 import Image from "next/image";
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from 'react';
 interface UserImageProps {
   image: string;
   handleFileChange: (e:any) => void;
@@ -10,6 +10,8 @@ interface UserImageProps {
 export const UserImage: FC<UserImageProps> = ({ image, handleFileChange }) => {
   const [isHover, setIsHover] = useState(false);
 
+  
+  
 
   return (
     <div
@@ -22,10 +24,11 @@ export const UserImage: FC<UserImageProps> = ({ image, handleFileChange }) => {
         width={200}
         height={200}
         className="rounded-lg h-[150px] w-[200px]"
+        priority
       />
       {isHover && (
         <>
-          <div className="absolute w-[200px] h-[150px] rounded-lg bg-dark_grey flex flex-col items-center justify-center -mt-[150px] bg-opacity-50">
+          <div className=" animate__animated animate__fadeIn animate__faster absolute w-[200px] h-[150px] rounded-lg bg-dark_grey flex flex-col items-center justify-center -mt-[150px] bg-opacity-50">
             <input
                 type="file"
                 name="file"

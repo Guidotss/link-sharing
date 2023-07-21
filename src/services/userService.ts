@@ -58,7 +58,7 @@ export class UserService {
         select: {
           id: true,
           email: true,
-          firtsName: true,
+          firstName: true,
           lastName: true,
           password: false,
           links: true,
@@ -94,7 +94,7 @@ export class UserService {
         select: {
           id: true,
           email: true,
-          firtsName: true,
+          firstName: true,
           lastName: true,
           password: false,
           image: true,
@@ -109,20 +109,54 @@ export class UserService {
   }
 
   async updateUserImage(id: string, image: string) {
-    const userUpdated = await this.prisma.user.update({
-      where: { id },
-      data: { image },
-      select: {
-        id: false,
-        email: false,
-        firtsName: false,
-        lastName: false,
-        image: true,
-        links: false,
-        password: false,
-      },
-    });
+    try {
+      const userUpdated = await this.prisma.user.update({
+        where: { id },
+        data: { image },
+        select: {
+          id: false,
+          email: false,
+          firstName: false,
+          lastName: false,
+          image: true,
+          links: false,
+          password: false,
+        },
+      });
+      return userUpdated;
+    } catch (error) {
+      console.log(error);
+      throw new Error(
+        `An error has ocurred while updating user image: ${error}`
+      );
+    }
+  }
 
-    return userUpdated;
+  async updateUser(
+    id: string,
+    firstName: string,
+    lastName: string,
+    email?: string
+  ) {
+    try {
+      const userUpdated = await this.prisma.user.update({
+        where: { id },
+        data: { firstName, lastName, email },
+        select: {
+          id: false,
+          email: true,
+          firstName: true,
+          lastName: true,
+          image: false,
+          links: false,
+          password: false,
+        },
+      });
+
+      return userUpdated;
+    } catch (error) {
+      console.log(error);
+      throw new Error(`An error has ocurred while updating the user ${error}`);
+    }
   }
 }

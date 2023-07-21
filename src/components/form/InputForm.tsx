@@ -1,4 +1,3 @@
-
 import { FC } from "react";
 
 interface InputProps {
@@ -39,6 +38,23 @@ interface InputProps {
       };
     }>
   >;
+
+  setProfileForm?: React.Dispatch<
+    React.SetStateAction<{
+      firstName: {
+        value: string;
+        error: boolean;
+      };
+      lastName: {
+        value: string;
+        error: boolean;
+      };
+      email: {
+        value: string;
+        error: boolean;
+      };
+    }>
+  >;
 }
 
 export const InputForm: FC<InputProps> = ({
@@ -49,6 +65,7 @@ export const InputForm: FC<InputProps> = ({
   name,
   setLoginForm,
   setRegisterForm,
+  setProfileForm,
 }) => {
   return (
     <>
@@ -65,21 +82,32 @@ export const InputForm: FC<InputProps> = ({
         autoComplete={type === "password" ? "new-password" : "on"}
         onChange={(e) => {
           {
-            setLoginForm
-              ? setLoginForm((prev) => ({
-                  ...prev,
-                  [e.target.name]: {
-                    value: e.target.value,
-                    error: false,
-                  },
-                }))
-              : setRegisterForm!((prev) => ({
-                  ...prev,
-                  [e.target.name]: {
-                    value: e.target.value,
-                    error: false,
-                  },
-                }));
+            setLoginForm &&
+              setLoginForm((prev) => ({
+                ...prev,
+                [name]: {
+                  value: e.target.value,
+                  error: false,
+                },
+              }));
+
+            setRegisterForm && 
+              setRegisterForm((prev) => ({
+                ...prev,
+                [name]: {
+                  value: e.target.value,
+                  error: false,
+                },
+              }));
+
+            setProfileForm &&
+              setProfileForm((prev) => ({
+                ...prev,
+                [name]: {
+                  value: e.target.value,
+                  error: false,
+                },
+              }));
           }
         }}
       />

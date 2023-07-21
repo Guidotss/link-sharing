@@ -47,6 +47,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
       return false;
     } catch (error) {
       console.log(error);
+      Cookies.remove("token");
       dispatch({
         type: "[AUTH] - logout",
       });
@@ -74,6 +75,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
       return false;
     } catch (error) {
       console.log(error);
+      Cookies.remove("token");
       dispatch({
         type: "[AUTH] - logout",
       });
@@ -101,6 +103,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
       );
       const data = await response.json();
       if (!data.ok) {
+        Cookies.remove("token");
         dispatch({
           type: "[AUTH] - logout",
         });
@@ -113,6 +116,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
       });
     } catch (error) {
       console.log(error);
+      Cookies.remove("token");
       dispatch({
         type: "[AUTH] - logout",
       });
@@ -127,32 +131,72 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
     return true;
   };
 
-  const updateUserImage = async (file: File) => { 
+  const updateUserImage = async (file: File) => {
     const token = Cookies.get("token");
-    if(!token) { 
-      dispatch({ 
-        type: "[AUTH] - logout"
-      }); 
+    if (!token) {
+      Cookies.remove("token");
+      dispatch({
+        type: "[AUTH] - logout",
+      });
     }
 
     const url = await uploadUserImage(file);
-    const response = await fetch("http://localhost:3000/api/auth/update-image", {
-      method: "PUT",
-      body: JSON.stringify({ image: url }),
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const response = await fetch(
+      "http://localhost:3000/api/auth/update-image",
+      {
+        method: "PUT",
+        body: JSON.stringify({ image: url }),
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
-    });  
+    );
 
     const data = await response.json();
-    if(data.ok){
-      dispatch({ 
+    if (data.ok) {
+      dispatch({
         type: "[AUTH] - Update_user_image",
-        payload: data.image
-      }); 
+        payload: data.image,
+      });
     }
+  };
 
-  }
+  const updateUserInfo = async (
+    firstName?: string,
+    lastName?: string,
+    email?: string
+  ) => {
+    const token = Cookies.get("token");
+    if (!token) {
+      dispatch({
+        type: "[AUTH] - logout",
+      });
+    }
+    if (!firstName || !lastName) return;
+
+    if (email) {
+      const response = await fetch("/api/auth/update-user", {
+        method: "PUT",
+        body: JSON.stringify({ firstName, lastName, email }),
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+    }
+    const response = await fetch("/api/auth/update-user", {
+      method: "PUT",
+      body: JSON.stringify({ firstName, lastName }),
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+
+    console.log(data);
+  };
 
   return (
     <AuthContext.Provider
@@ -162,7 +206,8 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         login,
         logout,
         register,
-        updateUserImage
+        updateUserImage,
+        updateUserInfo,
       }}
     >
       {children}

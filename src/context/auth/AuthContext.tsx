@@ -8,6 +8,7 @@ interface AuthContextProps {
     login: ( email: string, password: string ) => Promise<boolean>;
     register: (email: string, passwod: string) => Promise<boolean>
     updateUserImage: (file: any) => Promise<void>; 
+    updateUserInfo: ( firstName: string, lastName: string, email?: string ) => Promise<void>;
     logout: () => boolean;
 }
 
