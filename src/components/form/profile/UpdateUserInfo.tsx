@@ -40,6 +40,8 @@ export const UpdateUserInfo = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    
+
     if(!form.firstName.value) {
       setForm({
         ...form,
@@ -84,7 +86,24 @@ export const UpdateUserInfo = () => {
         form.lastName.value,
         form.email.value
       );
+      return;
     }
+    
+    if(form.firstName.value === user?.firstName && form.lastName.value === user?.lastName) { 
+      setForm({
+        ...form,
+        firstName: {
+          ...form.firstName,
+          error: true
+        },
+        lastName: {
+          ...form.lastName,
+          error: true
+        }
+      })
+      return; 
+    }
+
     updateUserInfo(form.firstName.value, form.lastName.value);
   };
 

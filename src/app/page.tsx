@@ -1,4 +1,4 @@
-import { Navbar, AddNewLinkSection, LinksGrid, MockUpIcon  } from "@/components";
+import { Navbar, AddNewLinkSection, LinksGrid, MockupHomePage  } from "@/components";
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
           <div className="-mt-16">
             <LinksGrid />
           </div>
-          <MockUpIcon />
+          <MockupHomePage/>
         </div>
         <div className="w-full bg-white min-h-[75vh] items-center justify-center rounded-lg p-10">
           <AddNewLinkSection />

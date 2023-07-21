@@ -183,7 +183,19 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
           "Content-Type": "application/json",
         },
       });
+
       const data = await response.json();
+      if (data.ok) {
+        const { firstName, lastName, email } = data as {
+          firstName: string;
+          lastName: string;
+          email: string;
+        };
+        dispatch({
+          type: "[AUTH] - Update_user_info",
+          payload: { firstName, lastName, email },
+        });
+      }
     }
     const response = await fetch("/api/auth/update-user", {
       method: "PUT",
@@ -194,6 +206,16 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
       },
     });
     const data = await response.json();
+    if(data.ok){ 
+      const { firstName, lastName } = data as {
+        firstName: string;
+        lastName: string;
+      };
+      dispatch({
+        type: "[AUTH] - Update_user_info",
+        payload: { firstName, lastName },
+      });
+    }
 
     console.log(data);
   };
