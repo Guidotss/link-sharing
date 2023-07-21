@@ -1,17 +1,14 @@
 "use client";
 import { UploadImageIcon } from "@/components/ui";
 import Image from "next/image";
-import { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect } from "react";
 interface UserImageProps {
   image: string;
-  handleFileChange: (e:any) => void;
+  handleFileChange: (e: any) => void;
 }
 
 export const UserImage: FC<UserImageProps> = ({ image, handleFileChange }) => {
   const [isHover, setIsHover] = useState(false);
-
-  
-  
 
   return (
     <div
@@ -30,15 +27,18 @@ export const UserImage: FC<UserImageProps> = ({ image, handleFileChange }) => {
         <>
           <div className=" animate__animated animate__fadeIn animate__faster absolute w-[200px] h-[150px] rounded-lg bg-dark_grey flex flex-col items-center justify-center -mt-[150px] bg-opacity-50">
             <input
-                type="file"
-                name="file"
-                id="raised-button-file"
-                className="hidden"
-                onChange={handleFileChange}
+              type="file"
+              name="file"
+              id="raised-button-file"
+              className="hidden"
+              onChange={handleFileChange}
             />
-            <label htmlFor="raised-button-file" className="flex flex-col items-center cursor-pointer">
-                <UploadImageIcon fill="#fff" />
-                <span className="text-white">Change Image</span>
+            <label
+              htmlFor="raised-button-file"
+              className="flex flex-col items-center cursor-pointer"
+            >
+              <UploadImageIcon fill="#fff" />
+              <span className="text-white">Change Image</span>
             </label>
           </div>
         </>

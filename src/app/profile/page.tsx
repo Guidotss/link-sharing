@@ -1,4 +1,4 @@
-import { LinksGrid, MockUpIcon, MockupProfile, Navbar, UpdateProfileSection } from "@/components";
+import { LinksGrid, MockupProfile, Navbar, UpdateProfileSection } from "@/components";
 
 function ProfilePage() {
   return (

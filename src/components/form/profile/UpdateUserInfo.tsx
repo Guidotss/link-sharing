@@ -1,111 +1,13 @@
 "use client";
-import { useContext, useState, useEffect } from "react";
+import { useForm } from "@/hooks";
 import { InputForm } from "../InputForm";
-import { AuthContext } from "@/context";
 
 export const UpdateUserInfo = () => {
-  const { updateUserInfo, user } = useContext(AuthContext);
-  const [form, setForm] = useState({
-    firstName: {
-      value: user?.firstName || "",
-      error: false,
-    },
-    lastName: {
-      value: user?.lastName || "",
-      error: false,
-    },
-    email: {
-      value: user?.email || "",
-      error: false,
-    },
-  });
-
-  useEffect(() => {
-    setForm({
-      firstName: {
-        value: user?.firstName || "",
-        error: false,
-      },
-      lastName: {
-        value: user?.lastName || "",
-        error: false,
-      },
-      email: {
-        value: user?.email || "",
-        error: false,
-      },
-    });
-  }, [user?.firstName, user?.lastName, user?.email]);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    
-
-    if(!form.firstName.value) {
-      setForm({
-        ...form,
-        firstName: {
-          ...form.firstName,
-          error: true
-        }
-      })
-      return; 
-    }
-
-    if(!form.lastName.value) {
-      setForm({
-        ...form,
-        lastName: {
-          ...form.lastName,
-          error: true
-        }
-      })
-      return; 
-    }
-
-    if(!form.lastName.value && !form.firstName.value) {
-      setForm({
-        ...form,
-        lastName: {
-          ...form.lastName,
-          error: true
-        },
-        firstName: {
-          ...form.firstName,
-          error: true
-        }
-      })
-      return;
-    }
-
-
-    if (form.email.value != user?.email) {
-      updateUserInfo(
-        form.firstName.value,
-        form.lastName.value,
-        form.email.value
-      );
-      return;
-    }
-    
-    if(form.firstName.value === user?.firstName && form.lastName.value === user?.lastName) { 
-      setForm({
-        ...form,
-        firstName: {
-          ...form.firstName,
-          error: true
-        },
-        lastName: {
-          ...form.lastName,
-          error: true
-        }
-      })
-      return; 
-    }
-
-    updateUserInfo(form.firstName.value, form.lastName.value);
-  };
+  const {
+    form: { firstName, lastName, email },
+    handleSubmit,
+    setForm,
+  } = useForm();
 
   return (
     <>
@@ -120,8 +22,8 @@ export const UpdateUserInfo = () => {
               placeholder="First name"
               type="text"
               name="firstName"
-              value={form.firstName.value}
-              error={form.firstName.error}
+              value={firstName.value}
+              error={firstName.error}
               errorMessage="Cant be empty"
               setProfileForm={setForm}
             />
@@ -134,8 +36,8 @@ export const UpdateUserInfo = () => {
               placeholder="First name"
               type="text"
               name="lastName"
-              value={form.lastName.value}
-              error={form.lastName.error}
+              value={lastName.value}
+              error={lastName.error}
               errorMessage="Cant be empty"
               setProfileForm={setForm}
             />
@@ -148,7 +50,7 @@ export const UpdateUserInfo = () => {
               placeholder="First name"
               type="text"
               name="email"
-              value={form.email.value}
+              value={email.value}
               error={false}
               errorMessage=""
               setProfileForm={setForm}

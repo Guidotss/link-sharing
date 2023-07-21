@@ -8,7 +8,6 @@
     "start": "next start",
     "lint": "next lint",
     "open-browser": "start http://localhost:3000"
-    
   },
   "dependencies": {
     "@cloudinary/react": "^1.11.2",
