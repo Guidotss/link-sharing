@@ -1,5 +1,5 @@
-import { Links } from "@/interfaces";
-import { PrismaClient } from "@prisma/client";
+
+import { Links, PrismaClient } from "@prisma/client";
 
 export class LinkService {
   private prisma: PrismaClient;
@@ -7,10 +7,15 @@ export class LinkService {
     this.prisma = new PrismaClient();
   }
 
-  async createLink(link: Links) {
+  async createLink(userId: string,link: Links) {
     try {
       this.prisma.$connect();
-      const newLink = await this.prisma.links.create({ data: link });
+      const newLink = await this.prisma.links.create({
+        data: { 
+          ...link,
+          userId
+        }
+      });
       this.prisma.$disconnect();
       return newLink;
     } catch (error) {
