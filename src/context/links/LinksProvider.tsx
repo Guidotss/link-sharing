@@ -3,6 +3,7 @@ import { useReducer, FC } from "react";
 import { LinksContext, linksReducer } from ".";
 import { Links } from "@/interfaces";
 
+
 interface LinkProviderProps {
   children: React.ReactNode;
 }
@@ -67,6 +68,32 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
   }
 
 
+  const saveLinks = async (userId: string,links: Links[]) => {
+    try{ 
+      const linksToSend = links.map(link => {
+        return {
+          name: link.name,
+          url: link.url
+        }
+      });  
+
+
+      const response = await fetch('/api/links/create', { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userId, links:linksToSend }) 
+      }); 
+      const data = await response.json();
+      console.log(data);
+    }catch(error){ 
+      console.log(error);  
+    }
+  }
+
+
+
   return (
     <LinksContext.Provider
       value={{
@@ -74,7 +101,8 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
 
         createNewLink,
         setCurrentLink,
-        onDragEnd
+        onDragEnd,
+        saveLinks
       }}
     >
       {children}

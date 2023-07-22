@@ -7,17 +7,16 @@ export class LinkService {
     this.prisma = new PrismaClient();
   }
 
-  async createLink(userId: string,link: Links) {
+  async createLink(userId: string,link: Links[]) { 
+    console.log(link); 
     try {
       this.prisma.$connect();
-      const newLink = await this.prisma.links.create({
-        data: { 
-          ...link,
-          userId
-        }
+      const result = await this.prisma.links.createMany({
+        data: link.map((link) => ({ ...link, userId })),
       });
       this.prisma.$disconnect();
-      return newLink;
+      return result;
+      
     } catch (error) {
       this.prisma.$disconnect();
       throw new Error(`An error occurred while creating the link: ${error}`);

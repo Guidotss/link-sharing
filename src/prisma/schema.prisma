@@ -10,7 +10,7 @@ datasource db {
 model User {
   id        String  @id @default(auto()) @map("_id") @db.ObjectId
   firstName String?
-  lastName  String?
+  name  String?
   image     String?
   email     String  @unique
   password  String
@@ -26,18 +26,18 @@ model Links {
 }
 
 enum LinksNames {
-  github
-  frontendMentor
-  twitter
-  linkedin
-  youtube
-  facebook
-  twitch
-  devto
-  codewars
-  codepen
-  freecodecamp
-  gitlab
-  hashnode
-  stackoverflow
+  Github
+  FrontendMentor
+  Twitter
+  LinkedIn
+  Youtube
+  Facebook
+  Twitch
+  DevTo
+  CodeWars
+  CodePen
+  FreeCodeCamp
+  GitLab
+  HashNode
+  StackOverFlow
 }
