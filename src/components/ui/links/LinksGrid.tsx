@@ -1,12 +1,16 @@
 "use client";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { LinksContext } from "@/context";
 import { Links } from "@/interfaces";
 import { LinkCard } from "./LinkCard";
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 
 export const LinksGrid = () => {
-  const { links, onDragEnd } = useContext(LinksContext);
+  const { links, onDragEnd, loadLinks } = useContext(LinksContext);
+
+  useEffect(() => {
+    loadLinks();
+  },[]); 
 
   return (
     <DragDropContext

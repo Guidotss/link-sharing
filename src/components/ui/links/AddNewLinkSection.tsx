@@ -1,7 +1,7 @@
 "use client";
 import { useContext, useState } from "react";
 import { EmptySection } from "./EmptySection";
-import { AddLinksForm } from "@/components/form/links/AddLinksForm";
+import { AddLinksFormGrid } from "@/components/form/links/AddLinksFormGrid";
 import { LinksContext } from "@/context";
 
 export const AddNewLinkSection = () => {
@@ -26,7 +26,7 @@ export const AddNewLinkSection = () => {
           + Add new link
         </button>
       </div>
-      {!isSelectOpen ? <EmptySection /> : <AddLinksForm />}
+      {!isSelectOpen ? <EmptySection /> : <AddLinksFormGrid />}
     </>
   );
 };

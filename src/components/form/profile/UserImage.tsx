@@ -20,12 +20,12 @@ export const UserImage: FC<UserImageProps> = ({ image, handleFileChange }) => {
         alt="profile"
         width={200}
         height={200}
-        className="rounded-lg 2xl:h-[150px] 2xl:w-[150px] sm:h-[120px] sm:w-[120px] cursor-pointer"
+        className="rounded-lg 2xl:h-[150px] 2xl:w-[150px] sm:h-[130px] sm:w-[130px] cursor-pointer"
         priority
       />
       {isHover && (
         <>
-          <div className=" animate__animated animate__fadeIn animate__faster absolute 2xl:w-[150px] 2xl:h-[150px] sm:w-[120px] sm:h-[120px] rounded-lg bg-dark_grey flex flex-col items-center justify-center 2xl:-mt-[150px] sm:-mt-[120px] bg-opacity-50">
+          <div className=" animate__animated animate__fadeIn animate__faster absolute 2xl:w-[150px] 2xl:h-[150px] sm:w-[130px] sm:h-[130px] rounded-lg bg-dark_grey flex flex-col items-center justify-center 2xl:-mt-[150px] sm:-mt-[130px] bg-opacity-50">
             <input
               type="file"
               name="file"

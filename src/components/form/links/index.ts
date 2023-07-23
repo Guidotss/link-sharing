@@ -1,2 +1,2 @@
-export * from './AddLinksForm';
+export * from './AddLinksFormGrid';
 export * from './LinksCustomSelect'; 

@@ -7,7 +7,7 @@ import {
 
 export default function Home() {
   return (
-    <main className="px-20 py-5 bg-light_grey">
+    <main className="2xL:px-20 2xl:py-5 sm:py-2 bg-light_grey">
       <Navbar />
       <section className="flex 2xl:gap-3 px-20 mt-14">
         <div className="bg-white flex-auto 2xl:h-[75vh] h-full w-full flex items-center justify-center rounded-lg">
