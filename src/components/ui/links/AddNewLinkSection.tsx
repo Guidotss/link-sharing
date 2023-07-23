@@ -1,12 +1,19 @@
 "use client";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { EmptySection } from "./EmptySection";
 import { AddLinksFormGrid } from "@/components/form/links/AddLinksFormGrid";
 import { LinksContext } from "@/context";
+import { AddNewLinkForm } from "@/components/form/links/AddNewLinkForm";
 
 export const AddNewLinkSection = () => {
   const [isSelectOpen, setIsSelectOpen] = useState<boolean>(false);
-  const { createNewLink } = useContext(LinksContext);
+  const { createNewLink, isEditing, currentLink } = useContext(LinksContext);
+  let condition = isEditing && currentLink;
+  useEffect(() => {
+    if (condition) {
+      setIsSelectOpen(false);
+    }
+  }, [condition]);
 
   return (
     <>
@@ -26,7 +33,11 @@ export const AddNewLinkSection = () => {
           + Add new link
         </button>
       </div>
-      {!isSelectOpen ? <EmptySection /> : <AddLinksFormGrid />}
+      {condition && !isSelectOpen ? (
+        <AddNewLinkForm link={currentLink!} />
+      ) : (
+        <>{isSelectOpen ? <AddLinksFormGrid /> : <EmptySection />}</>
+      )}
     </>
   );
 };

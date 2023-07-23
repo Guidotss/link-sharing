@@ -5,6 +5,7 @@ import { createContext } from "react";
 interface LinksContextProps {
   links: Links[] | null;
   currentLink: Links | null;
+  isEditing: boolean;
   createNewLink: (link?: Links) => void;
   setCurrentLink: (id: string, url?: string) => void;
   onDragEnd: (result: any) => void;
@@ -12,6 +13,7 @@ interface LinksContextProps {
   removeLink: (id: string) => void;
   updateLinks: (links: Links[]) => void;
   loadLinks: () => Promise<void>;
+  setIsEditing: (isEditing: boolean) => void; 
 }
 
 export const LinksContext = createContext<LinksContextProps>(

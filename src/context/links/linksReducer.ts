@@ -11,6 +11,7 @@ type LinksActionType =
   | { type: "[LINKS] - Load_links"; payload: Links[] }
   | { type: "[LINKS] - Remove_link"; payload: string }
   | { type: "[LINKS] - Update_links"; payload: Links[] }
+  | { type: "[LINKS] - Set_is_editing"; payload: boolean }
 
 export const linksReducer = (
   state: LinksState,
@@ -49,6 +50,16 @@ export const linksReducer = (
       return { 
         ...state,
         links: state.links?.filter(link => link.id !== action.payload)!
+      }
+    case "[LINKS] - Update_links":
+      return {
+        ...state,
+        links: action.payload,
+      };
+    case "[LINKS] - Set_is_editing":
+      return {
+        ...state,
+        isEditing: action.payload,
       }
 
     default:

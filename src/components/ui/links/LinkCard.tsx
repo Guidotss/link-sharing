@@ -1,10 +1,11 @@
 "use client";
-import { FC, useState } from "react";
+import { FC, useContext, useState } from "react";
 import { Draggable } from "@hello-pangea/dnd";
 import { selectOptions } from "@/constants";
 import { Links } from "@/interfaces";
 import { RightArrowIcon } from "../icons";
 import "animate.css";
+import { LinksContext } from "@/context";
 
 interface LinkCardProps {
   link: Links;
@@ -13,6 +14,7 @@ interface LinkCardProps {
 
 export const LinkCard: FC<LinkCardProps> = ({ link, index }) => {
   const [isCopied, setIsCopied] = useState(false);
+  const { setIsEditing, setCurrentLink } = useContext(LinksContext); 
   let bgColor = selectOptions.find(
     (option) => option.name.toLowerCase() === link.name.toLowerCase()
   )?.bgColor;
@@ -29,6 +31,13 @@ export const LinkCard: FC<LinkCardProps> = ({ link, index }) => {
     }, 1000);
   };
 
+
+  const handleCLick = () => {
+    setIsEditing(true);
+    setCurrentLink(link.id!);
+  }
+
+
   return (
     <Draggable draggableId={link.id!} index={index} key={link.id}>
       {(provided) => (
@@ -39,6 +48,7 @@ export const LinkCard: FC<LinkCardProps> = ({ link, index }) => {
         >
           <div
             className={` ${bgColor} rounded-lg flex justify-between items-center py-3 text-white mb-4`}
+            onClick={handleCLick}
           >
             <div className="flex items-center gap-2 ml-2 ">
               {selectOptions

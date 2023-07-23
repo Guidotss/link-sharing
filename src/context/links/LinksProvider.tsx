@@ -11,11 +11,13 @@ interface LinkProviderProps {
 export interface LinksState {
   links: Links[] | null;
   currentLink: Links | null;
+  isEditing: boolean;
 }
 
 const LINKS_INITIAL_STATE: LinksState = {
   links: [],
   currentLink: null,
+  isEditing: false,
 };
 
 export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
@@ -50,6 +52,13 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
       payload: { id },
     });
   };
+
+  const setIsEditing = (isEditing: boolean) => {
+    dispatch({
+      type: "[LINKS] - Set_is_editing",
+      payload: isEditing,
+    });
+  }
 
   const onDragEnd = (result: any) => {
     if (!result.destination) return;
@@ -155,6 +164,7 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
         loadLinks,
         removeLink,
         updateLinks,
+        setIsEditing,
       }}
     >
       {children}
