@@ -25,10 +25,8 @@ export const LinksGrid = () => {
               {links?.map((link: Links, index) => (
                 <LinkCard key={index} link={link} index={index} />
               ))}
-              {  provided.placeholder }
-
+              {provided.placeholder}
             </div>
-            
           )}
         </Droppable>
       </div>

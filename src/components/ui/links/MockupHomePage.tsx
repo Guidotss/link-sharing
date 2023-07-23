@@ -1,12 +1,17 @@
-"use client"
-import { AuthContext } from '@/context';
-import Image from 'next/image';
-import { useContext } from 'react';
-import { MockUpIcon } from '../icons';
-
+"use client";
+import { AuthContext, LinksContext } from "@/context";
+import Image from "next/image";
+import { useContext, useEffect } from "react";
+import { MockUpIcon } from "../icons";
 
 export const MockupHomePage = () => {
-    const { user } = useContext(AuthContext); 
+  const { user } = useContext(AuthContext);
+  const { loadLinks } = useContext(LinksContext);
+
+  useEffect(() => {
+    loadLinks();
+  }, []);
+
   return (
     <div className="flex items-center">
       <MockUpIcon
@@ -44,9 +49,9 @@ export const MockupHomePage = () => {
           <span className="font-bold">{user?.lastName}</span>
         </div>
         <div>
-            <span className="text-grey text-md">{user?.email}</span>
+          <span className="text-grey text-md">{user?.email}</span>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

@@ -20,7 +20,12 @@ export async function PUT(req: Request) {
   try {
     const { id } = (await verifyToken(token)) as { id: string };
 
-    const userUpdated = await userService.updateUser(id, firstName, lastName, email);
+    const userUpdated = await userService.updateUser(
+      id,
+      firstName,
+      lastName,
+      email
+    );
     if (!userUpdated)
       return new Response(
         JSON.stringify({ ok: false, message: "User not found" }),

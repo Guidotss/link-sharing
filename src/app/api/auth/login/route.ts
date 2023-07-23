@@ -8,9 +8,12 @@ export async function POST(req: Request) {
     const { email, password } = await req.json();
     const user = await userService.loginUser(email, password);
     if (!user) {
-      return new Response(JSON.stringify({ error: "User not found", ok:false }), {
-        status: 404,
-      });
+      return new Response(
+        JSON.stringify({ error: "User not found", ok: false }),
+        {
+          status: 404,
+        }
+      );
     }
 
     const token = signDocument(user.id, user.email);
@@ -19,8 +22,11 @@ export async function POST(req: Request) {
       status: 200,
     });
   } catch (error) {
-    return new Response(JSON.stringify({ error: "Internal Server Error", ok: false }), {
-      status: 500,
-    });
+    return new Response(
+      JSON.stringify({ error: "Internal Server Error", ok: false }),
+      {
+        status: 500,
+      }
+    );
   }
 }

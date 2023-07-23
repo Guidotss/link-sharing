@@ -32,7 +32,11 @@ export const LinkCard: FC<LinkCardProps> = ({ link, index }) => {
   return (
     <Draggable draggableId={link.id!} index={index} key={link.id}>
       {(provided) => (
-        <div { ...provided.dragHandleProps } { ...provided.draggableProps}  ref={provided.innerRef}>
+        <div
+          {...provided.dragHandleProps}
+          {...provided.draggableProps}
+          ref={provided.innerRef}
+        >
           <div
             className={` ${bgColor} rounded-lg flex justify-between items-center py-3 text-white mb-4`}
           >

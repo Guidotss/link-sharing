@@ -22,7 +22,8 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, AUTH_INITIAL_STATE);
 
   useEffect(() => {
-    Cookies.get("token");
+    const token = Cookies.get("token");
+    if (!token) return;
     revalidate();
   }, []);
 
@@ -36,6 +37,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
       const data = await response.json();
       if (data.ok) {
         Cookies.set("token", data.token);
+        Cookies.set("userId", data.user.id);
         const { user } = data as { user: User };
         dispatch({
           type: "[AUTH] - login",
@@ -63,13 +65,14 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         headers: { "Content-Type": "application/json" },
       });
       const data = await response.json();
-      
+
       if (data.ok) {
         Cookies.set("token", data.token);
-        const { user } = data as { user: User };
+        Cookies.set("userId", data.newUser.id);
+        const { newUser } = data as { newUser: User };
         dispatch({
           type: "[AUTH] - login",
-          payload: user,
+          payload: newUser,
         });
         return true;
       }
@@ -92,16 +95,13 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
           type: "[AUTH] - logout",
         });
       }
-      const response = await fetch(
-        "http://localhost:3000/api/auth/revalidate",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await fetch("/api/auth/revalidate", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const data = await response.json();
       if (!data.ok) {
         Cookies.remove("token");
@@ -207,7 +207,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
       },
     });
     const data = await response.json();
-    if(data.ok){ 
+    if (data.ok) {
       const { firstName, lastName } = data as {
         firstName: string;
         lastName: string;

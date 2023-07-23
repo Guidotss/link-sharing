@@ -6,17 +6,17 @@ export interface Links {
 }
 
 export type LinksNames =
-  | "github"
-  | "frontendMentor"
-  | "twitter"
-  | "linkedin"
-  | "youtube"
-  | "facebook"
-  | "twitch"
-  | "devto"
-  | "codewars"
-  | "codepen"
-  | "freecodecamp"
-  | "gitlab"
-  | "hashnode"
-  | "stackoverflow";
+  | "Github"
+  | "FrontendMentor"
+  | "Twitter"
+  | "Linkedin"
+  | "Youtube"
+  | "Facebook"
+  | "Twitch"
+  | "DevTo"
+  | "CodeWars"
+  | "CodePen"
+  | "FreeCodeCamp"
+  | "GitLab"
+  | "HashNode"
+  | "StackOverFlow";

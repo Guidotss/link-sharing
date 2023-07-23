@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export const Navbar = () => {
-  const [isHover, setIsHover] = useState(false); 
+  const [isHover, setIsHover] = useState(false);
   const pathName = usePathname();
-  
+
   return (
     <header className="flex justify-between items-center bg-white py-4 px-10 rounded-lg mx-20">
       <div className="flex items-center">
@@ -22,7 +22,9 @@ export const Navbar = () => {
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
-          <HeaderLinkIcon fill={ (isHover || pathName == '/') ? '#633CFF' : undefined } />
+          <HeaderLinkIcon
+            fill={isHover || pathName == "/" ? "#633CFF" : undefined}
+          />
           <Link href="/">
             <span
               className={`${
@@ -40,7 +42,9 @@ export const Navbar = () => {
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
-          <ProfileHeaderIcon fill={ (isHover || pathName == '/profile') ? '#633CFF' : undefined } />
+          <ProfileHeaderIcon
+            fill={isHover || pathName == "/profile" ? "#633CFF" : undefined}
+          />
           <Link href="profile">
             <span
               className={`text-md ${

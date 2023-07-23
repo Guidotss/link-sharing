@@ -45,7 +45,7 @@ export const MockupProfile = () => {
           <span className="font-bold">{user?.lastName}</span>
         </div>
         <div>
-            <span className="text-grey text-md">{user?.email}</span>
+          <span className="text-grey text-md">{user?.email}</span>
         </div>
       </div>
     </div>

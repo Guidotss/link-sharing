@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useContext, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -50,7 +50,6 @@ export const LoginForm = () => {
     <form
       className="flex flex-col bg-white rounded-xl h-1/2 w-[500px] p-16 text-dark_grey"
       onSubmit={handleSubmit}
-      
     >
       <h3 className="text-4xl font-bold">Login</h3>
       <span className="mt-2 text text-dark_grey opacity-80 text-md">

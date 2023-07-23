@@ -5,6 +5,7 @@ const userService = new UserService();
 
 export async function GET(req: Request) {
   const token = req.headers.get("Authorization")?.split(" ")[1];
+
   if (!token)
     return new Response(JSON.stringify({ ok: false }), {
       status: 401,
@@ -30,6 +31,7 @@ export async function GET(req: Request) {
       statusText: "OK",
     });
   } catch (error) {
+    console.log(error);
     return { status: 500, body: { message: "Unauthorized" } };
   }
 }

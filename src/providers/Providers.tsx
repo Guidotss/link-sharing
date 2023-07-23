@@ -1,17 +1,15 @@
-"use client"
-import { AuthProvider, LinksProvider } from '@/context'
-import { FC } from 'react';
+"use client";
+import { AuthProvider, LinksProvider } from "@/context";
+import { FC } from "react";
 
 interface ProvidersProps {
-    children: React.ReactNode;   
+  children: React.ReactNode;
 }
 
-export const Providers:FC<ProvidersProps> = ({ children }) => {
+export const Providers: FC<ProvidersProps> = ({ children }) => {
   return (
     <AuthProvider>
-      <LinksProvider>
-        { children }
-      </LinksProvider>
+      <LinksProvider>{children}</LinksProvider>
     </AuthProvider>
-  )
-}
+  );
+};

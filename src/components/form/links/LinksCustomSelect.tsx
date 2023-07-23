@@ -8,13 +8,13 @@ interface LinksCustomSelectProps {
   link?: Links;
 }
 
-export const LinksCustomSelect: FC<LinksCustomSelectProps> = ({
-  link,
-}) => {
+export const LinksCustomSelect: FC<LinksCustomSelectProps> = ({ link }) => {
   const [isSelectOpen, setIsSelectOpen] = useState<boolean>(false);
 
-  const currentLink = selectOptions.find((option) => option.name.toLocaleLowerCase() === link?.name.toLocaleLowerCase());
-
+  const currentLink = selectOptions.find(
+    (option) =>
+      option.name.toLocaleLowerCase() === link?.name.toLocaleLowerCase()
+  );
 
   return (
     <>
@@ -28,7 +28,7 @@ export const LinksCustomSelect: FC<LinksCustomSelectProps> = ({
         onClick={() => setIsSelectOpen(!isSelectOpen)}
       >
         <div className="flex items-center gap-2">
-          {currentLink?.icon({fill: undefined})}
+          {currentLink?.icon({ fill: undefined })}
           <span>{currentLink?.name}</span>
         </div>
         <ChevronDownIcon />
@@ -41,11 +41,10 @@ export const LinksCustomSelect: FC<LinksCustomSelectProps> = ({
               className="flex gap-2 items-center text-lg border-b-[1px] p-2 cursor-pointer"
               onClick={() => {
                 setIsSelectOpen(false);
-                link!.name = option.name as LinksNames;  
-
+                link!.name = option.name as LinksNames;
               }}
             >
-              {option.icon({fill: undefined})}
+              {option.icon({ fill: undefined })}
               <span>{option.name}</span>
             </div>
           ))}

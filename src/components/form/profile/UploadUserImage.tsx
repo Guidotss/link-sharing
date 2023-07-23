@@ -18,10 +18,7 @@ export const UploadUserImage = () => {
   return (
     <>
       {user?.image ? (
-        <UserImage
-          image={user?.image}
-          handleFileChange={handleFileChange}
-        />
+        <UserImage image={user?.image} handleFileChange={handleFileChange} />
       ) : (
         <>
           <div className="bg-light_purple 2xl:px-6 2xl:py-10 sm:px-1 sm:py-6 rounded-xl flex flex-col items-center">

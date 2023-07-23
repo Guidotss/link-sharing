@@ -1,13 +1,12 @@
 "use client";
-import { useContext, useState } from 'react';
+import { useContext, useState } from "react";
 import { EmptySection } from "./EmptySection";
-import { AddLinksForm } from '@/components/form/links/AddLinksForm';
-import { LinksContext } from '@/context';
-
+import { AddLinksForm } from "@/components/form/links/AddLinksForm";
+import { LinksContext } from "@/context";
 
 export const AddNewLinkSection = () => {
-  const [ isSelectOpen, setIsSelectOpen ]  = useState<boolean>(false); 
-  const {  createNewLink } = useContext(LinksContext)
+  const [isSelectOpen, setIsSelectOpen] = useState<boolean>(false);
+  const { createNewLink } = useContext(LinksContext);
 
   return (
     <>
@@ -17,9 +16,9 @@ export const AddNewLinkSection = () => {
           Add/edit/remove links below and then share all your profiles with the
           world!
         </p>
-        <button 
+        <button
           className="border-[1px] border-purple rounded-lg w-full py-2 mt-10 font-semibold text-purple hover:bg-light_purple transition-all"
-          onClick={() => { 
+          onClick={() => {
             setIsSelectOpen(true);
             createNewLink();
           }}
@@ -27,11 +26,7 @@ export const AddNewLinkSection = () => {
           + Add new link
         </button>
       </div>
-      { 
-        !isSelectOpen
-          ? <EmptySection />
-          : <AddLinksForm/>
-      }
+      {!isSelectOpen ? <EmptySection /> : <AddLinksForm />}
     </>
   );
 };

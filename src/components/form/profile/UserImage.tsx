@@ -1,7 +1,7 @@
 "use client";
-import { UploadImageIcon } from "@/components/ui";
+import { FC, useState } from "react";
 import Image from "next/image";
-import { FC, useState, useEffect } from "react";
+import { UploadImageIcon } from "@/components/ui";
 interface UserImageProps {
   image: string;
   handleFileChange: (e: any) => void;

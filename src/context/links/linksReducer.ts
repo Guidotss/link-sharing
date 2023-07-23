@@ -7,7 +7,8 @@ type LinksActionType =
       type: "[LINKS] - Set_current_link";
       payload: { id: string; url?: string };
     }
-  | { type: "[LINKS] - Reoder_links"; payload: Links[] };
+  | { type: "[LINKS] - Reoder_links"; payload: Links[] }
+  | { type: "[LINKS] - Load_links"; payload: Links[] };
 
 export const linksReducer = (
   state: LinksState,
@@ -30,8 +31,14 @@ export const linksReducer = (
         links: [...state.links!],
         currentLink: currentLink!,
       };
-    
+
     case "[LINKS] - Reoder_links":
+      return {
+        ...state,
+        links: action.payload,
+      };
+
+    case "[LINKS] - Load_links":
       return {
         ...state,
         links: action.payload,

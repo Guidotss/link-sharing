@@ -9,6 +9,7 @@ interface LinksContextProps {
   setCurrentLink: (id: string, url?: string) => void;
   onDragEnd: (result: any) => void;
   saveLinks: (userId: string, links: Links[]) => Promise<void>;
+  loadLinks: () => Promise<void>;
 }
 
 export const LinksContext = createContext<LinksContextProps>(

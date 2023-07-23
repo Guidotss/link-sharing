@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     );
 
   try {
-    const result = await linksService.createLink(userId,links);
+    const result = await linksService.createLink(userId, links);
     return new Response(JSON.stringify({ ok: true, result }), {
       status: 201,
     });

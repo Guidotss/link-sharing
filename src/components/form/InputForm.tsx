@@ -91,7 +91,7 @@ export const InputForm: FC<InputProps> = ({
                 },
               }));
 
-            setRegisterForm && 
+            setRegisterForm &&
               setRegisterForm((prev) => ({
                 ...prev,
                 [name]: {
