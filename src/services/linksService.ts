@@ -32,4 +32,16 @@ export class LinkService {
       throw new Error(`An error occurred while getting the links: ${error}`);
     }
   }
+  async remove(linkId: string) {
+    try {
+      this.prisma.$connect();
+      const link = await this.prisma.links.delete({ where: { id: linkId } });
+      if (!link) throw new Error("Link not found");
+      this.prisma.$disconnect();
+      return link;
+    } catch (error) {
+      console.log(error);
+      throw new Error(`An error occurred while removing the link: ${error}`);
+    }
+  }
 }

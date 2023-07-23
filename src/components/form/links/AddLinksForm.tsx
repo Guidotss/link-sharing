@@ -6,12 +6,19 @@ import { LinksCustomSelect } from "./LinksCustomSelect";
 import { AuthContext } from "@/context";
 
 export const AddLinksForm = () => {
-  const { links, currentLink, setCurrentLink, saveLinks } =
+  const { links, setCurrentLink, saveLinks, removeLink } =
     useContext(LinksContext);
   const { user } = useContext(AuthContext);
 
+
+
   const handleCurrentLink = (id: string) => {
     setCurrentLink(id);
+  };
+
+  const handleRemoveLink = (e: React.FormEvent, id: string) => {
+    e.preventDefault();
+    removeLink(id);
   };
 
   const handleSaveLinks = () => {
@@ -28,7 +35,12 @@ export const AddLinksForm = () => {
           >
             <div className="w-full flex justify-between">
               <h3 className="text-grey font-semibold">Link # {index + 1}</h3>
-              <button className="text-grey">Remove</button>
+              <button
+                className="text-grey"
+                onClick={(e) => handleRemoveLink(e, link?.id!)}
+              >
+                Remove
+              </button>
             </div>
             <div className="flex flex-col gap-10">
               <div>

@@ -9,6 +9,8 @@ interface LinksContextProps {
   setCurrentLink: (id: string, url?: string) => void;
   onDragEnd: (result: any) => void;
   saveLinks: (userId: string, links: Links[]) => Promise<void>;
+  removeLink: (id: string) => void;
+  updateLinks: (links: Links[]) => void;
   loadLinks: () => Promise<void>;
 }
 

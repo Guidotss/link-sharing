@@ -98,7 +98,7 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
         });
         return;
       }
-      const response = await fetch(`/api/links`, {
+      const response = await fetch('/api/links', {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -115,6 +115,34 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
     }
   };
 
+  const removeLink = (linkId: string) => {
+
+    try{
+      const response = fetch('/api/links/remove', {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ linkId }),
+      }); 
+    }catch(error){
+      console.log(error)
+    }
+
+    dispatch({
+      type: "[LINKS] - Remove_link",
+      payload: linkId,
+    });
+  }
+
+  const updateLinks = (links: Links[]) => {
+    dispatch({
+      type: "[LINKS] - Update_links",
+      payload: links,
+    });
+  }
+
+
   return (
     <LinksContext.Provider
       value={{
@@ -125,6 +153,8 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
         onDragEnd,
         saveLinks,
         loadLinks,
+        removeLink,
+        updateLinks,
       }}
     >
       {children}

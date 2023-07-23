@@ -8,7 +8,9 @@ type LinksActionType =
       payload: { id: string; url?: string };
     }
   | { type: "[LINKS] - Reoder_links"; payload: Links[] }
-  | { type: "[LINKS] - Load_links"; payload: Links[] };
+  | { type: "[LINKS] - Load_links"; payload: Links[] }
+  | { type: "[LINKS] - Remove_link"; payload: string }
+  | { type: "[LINKS] - Update_links"; payload: Links[] }
 
 export const linksReducer = (
   state: LinksState,
@@ -43,6 +45,11 @@ export const linksReducer = (
         ...state,
         links: action.payload,
       };
+    case "[LINKS] - Remove_link": 
+      return { 
+        ...state,
+        links: state.links?.filter(link => link.id !== action.payload)!
+      }
 
     default:
       return {
