@@ -7,12 +7,15 @@ import { LinksContext } from "@/context";
 interface AddNewLinkFormProps {
   link: Links;
   index?: number;
+  isEditForm?: boolean;
 }
 
-export const AddNewLinkForm: FC<AddNewLinkFormProps> = ({ link, index }) => {
-
-    const { setCurrentLink, removeLink } = useContext(LinksContext); 
-
+export const AddNewLinkForm: FC<AddNewLinkFormProps> = ({
+  link,
+  index,
+  isEditForm,
+}) => {
+  const { setCurrentLink, removeLink, updateLinks } = useContext(LinksContext);
 
   const handleCurrentLink = (id: string) => {
     setCurrentLink(id);
@@ -22,6 +25,13 @@ export const AddNewLinkForm: FC<AddNewLinkFormProps> = ({ link, index }) => {
     e.preventDefault();
     removeLink(id);
   };
+
+
+  const handleUpdateLink = (e: React.FormEvent) => {
+    e.preventDefault();
+    updateLinks(link); 
+  }
+
 
   return (
     <form className="flex flex-col items-center mt-10 ">
@@ -57,6 +67,15 @@ export const AddNewLinkForm: FC<AddNewLinkFormProps> = ({ link, index }) => {
           </div>
         </div>
       </div>
+      {isEditForm && (
+        <div
+          className="w-full flex justify-end mt-20 border-t-[1px] p-5"
+        >
+          <button className="bg-purple px-5 py-2 rounded-lg text-white font-semibold hover:bg-soft_purple transition-all" onClick={handleUpdateLink}>
+            Save
+          </button>
+        </div>
+      )}
     </form>
   );
 };

@@ -10,7 +10,7 @@ type LinksActionType =
   | { type: "[LINKS] - Reoder_links"; payload: Links[] }
   | { type: "[LINKS] - Load_links"; payload: Links[] }
   | { type: "[LINKS] - Remove_link"; payload: string }
-  | { type: "[LINKS] - Update_links"; payload: Links[] }
+  | { type: "[LINKS] - Update_links"; payload: Links }
   | { type: "[LINKS] - Set_is_editing"; payload: boolean }
 
 export const linksReducer = (
@@ -54,7 +54,7 @@ export const linksReducer = (
     case "[LINKS] - Update_links":
       return {
         ...state,
-        links: action.payload,
+        links: state.links?.map(link => link.id === action.payload.id ? action.payload : link)!
       };
     case "[LINKS] - Set_is_editing":
       return {

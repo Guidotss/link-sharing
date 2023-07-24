@@ -34,7 +34,7 @@ export const AddNewLinkSection = () => {
         </button>
       </div>
       {condition && !isSelectOpen ? (
-        <AddNewLinkForm link={currentLink!} />
+        <AddNewLinkForm link={currentLink!} isEditForm />
       ) : (
         <>{isSelectOpen ? <AddLinksFormGrid /> : <EmptySection />}</>
       )}

@@ -44,4 +44,21 @@ export class LinkService {
       throw new Error(`An error occurred while removing the link: ${error}`);
     }
   }
+
+  async update(link: Links) {
+    try {
+      const { id, ...linkData } = link;
+      this.prisma.$connect();
+      const linkUpdated = await this.prisma.links.update({
+        where: { id },
+        data: linkData,
+      });
+      if (!linkUpdated) throw new Error("Link not found");
+      this.prisma.$disconnect();
+      return linkUpdated;
+    } catch (error) {
+      console.log(error);
+      throw new Error(`An error occurred while updating the link: ${error}`);
+    }
+  }
 }

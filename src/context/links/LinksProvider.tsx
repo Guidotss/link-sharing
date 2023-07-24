@@ -58,7 +58,7 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
       type: "[LINKS] - Set_is_editing",
       payload: isEditing,
     });
-  }
+  };
 
   const onDragEnd = (result: any) => {
     if (!result.destination) return;
@@ -107,7 +107,7 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
         });
         return;
       }
-      const response = await fetch('/api/links', {
+      const response = await fetch("/api/links", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -125,32 +125,45 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
   };
 
   const removeLink = (linkId: string) => {
-
-    try{
-      const response = fetch('/api/links/remove', {
+    try {
+      const response = fetch("/api/links/remove", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ linkId }),
-      }); 
-    }catch(error){
-      console.log(error)
+      });
+    } catch (error) {
+      console.log(error);
     }
 
     dispatch({
       type: "[LINKS] - Remove_link",
       payload: linkId,
     });
-  }
+  };
 
-  const updateLinks = (links: Links[]) => {
-    dispatch({
-      type: "[LINKS] - Update_links",
-      payload: links,
-    });
-  }
+  const updateLinks = async (link: Links) => {
+    try {
+      const response = await fetch("/api/links/update", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ link }),
+      });
+      const data = await response.json();
 
+      if (data.ok) {
+        dispatch({
+          type: "[LINKS] - Update_links",
+          payload: data.link,
+        });
+      } 
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <LinksContext.Provider

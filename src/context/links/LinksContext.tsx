@@ -11,7 +11,7 @@ interface LinksContextProps {
   onDragEnd: (result: any) => void;
   saveLinks: (userId: string, links: Links[]) => Promise<void>;
   removeLink: (id: string) => void;
-  updateLinks: (links: Links[]) => void;
+  updateLinks: (link: Links) => void;
   loadLinks: () => Promise<void>;
   setIsEditing: (isEditing: boolean) => void; 
 }
