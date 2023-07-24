@@ -15,7 +15,9 @@ export const AddNewLinkForm: FC<AddNewLinkFormProps> = ({
   index,
   isEditForm,
 }) => {
-  const { setCurrentLink, removeLink, updateLinks } = useContext(LinksContext);
+  const { setCurrentLink, removeLink, updateLinks, links } =
+    useContext(LinksContext);
+  const linkIndex = links?.findIndex((l) => l.id === link.id);
 
   const handleCurrentLink = (id: string) => {
     setCurrentLink(id);
@@ -26,12 +28,10 @@ export const AddNewLinkForm: FC<AddNewLinkFormProps> = ({
     removeLink(id);
   };
 
-
   const handleUpdateLink = (e: React.FormEvent) => {
     e.preventDefault();
-    updateLinks(link); 
-  }
-
+    updateLinks(link);
+  };
 
   return (
     <form className="flex flex-col items-center mt-10 ">
@@ -41,7 +41,7 @@ export const AddNewLinkForm: FC<AddNewLinkFormProps> = ({
       >
         <div className="w-full flex justify-between">
           <h3 className="text-grey font-semibold">
-            Link # {index ? index + 1 : 1}
+            Link # {index ? index + 1 : linkIndex! + 1}
           </h3>
           <button
             className="text-grey"
@@ -61,17 +61,18 @@ export const AddNewLinkForm: FC<AddNewLinkFormProps> = ({
               type="text"
               placeholder="https://www.example.com"
               name="url"
-              value={link.url}
+              value={link.url || ""}
               onChange={(e) => setCurrentLink(link?.id!, e.target.value)}
             />
           </div>
         </div>
       </div>
       {isEditForm && (
-        <div
-          className="w-full flex justify-end mt-20 border-t-[1px] p-5"
-        >
-          <button className="bg-purple px-5 py-2 rounded-lg text-white font-semibold hover:bg-soft_purple transition-all" onClick={handleUpdateLink}>
+        <div className="w-full flex justify-end mt-20 border-t-[1px] p-5">
+          <button
+            className="bg-purple px-5 py-2 rounded-lg text-white font-semibold hover:bg-soft_purple transition-all"
+            onClick={handleUpdateLink}
+          >
             Save
           </button>
         </div>

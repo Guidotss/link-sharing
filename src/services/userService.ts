@@ -61,7 +61,7 @@ export class UserService {
           firstName: true,
           lastName: true,
           password: false,
-          links: true,
+          Links: true,
         },
       });
       this.prisma.$disconnect();
@@ -119,7 +119,7 @@ export class UserService {
           firstName: false,
           lastName: false,
           image: true,
-          links: false,
+          Links: false,
           password: false,
         },
       });
@@ -148,7 +148,7 @@ export class UserService {
           firstName: true,
           lastName: true,
           image: false,
-          links: false,
+          Links: false,
           password: false,
         },
       });

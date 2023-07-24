@@ -67,50 +67,48 @@ export const InputForm: FC<InputProps> = ({
   setRegisterForm,
   setProfileForm,
 }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLoginForm &&
+      setLoginForm((prev) => ({
+        ...prev,
+        [name]: {
+          value: e.target.value,
+          error: false,
+        },
+      }));
+
+    setRegisterForm &&
+      setRegisterForm((prev) => ({
+        ...prev,
+        [name]: {
+          value: e.target.value,
+          error: false,
+        },
+      }));
+
+    setProfileForm &&
+      setProfileForm((prev) => ({
+        ...prev,
+        [name]: {
+          value: e.target.value,
+          error: false,
+        },
+      }));
+  };
+
   return (
-    <>
-      <input
-        className={`px-7 py-2 rounded-lg w-[380px] border-[1px] text-lg mb-5 focus:shadow-lg ${
-          !error
-            ? "focus:sadow-purple focus:shadow-purple focus:outline-none focus:border-purple  transition-all"
-            : "border-red focus:border-red focus:outline-none transition-all shadow-none"
-        }`}
-        placeholder={placeholder}
-        name={name}
-        type={type}
-        value={value}
-        autoComplete={type === "password" ? "new-password" : "on"}
-        onChange={(e) => {
-          {
-            setLoginForm &&
-              setLoginForm((prev) => ({
-                ...prev,
-                [name]: {
-                  value: e.target.value,
-                  error: false,
-                },
-              }));
-
-            setRegisterForm &&
-              setRegisterForm((prev) => ({
-                ...prev,
-                [name]: {
-                  value: e.target.value,
-                  error: false,
-                },
-              }));
-
-            setProfileForm &&
-              setProfileForm((prev) => ({
-                ...prev,
-                [name]: {
-                  value: e.target.value,
-                  error: false,
-                },
-              }));
-          }
-        }}
-      />
-    </>
+    <input
+      className={`px-7 py-2 rounded-lg w-[380px] border-[1px] text-lg mb-5 focus:shadow-lg ${
+        !error
+          ? "focus:sadow-purple focus:shadow-purple focus:outline-none focus:border-purple  transition-all"
+          : "border-red focus:border-red focus:outline-none transition-all shadow-none"
+      }`}
+      placeholder={placeholder}
+      name={name}
+      type={type}
+      value={value}
+      autoComplete={type === "password" ? "new-password" : "on"}
+      onChange={handleChange}
+    />
   );
 };

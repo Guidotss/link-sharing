@@ -1,5 +1,5 @@
 "use client";
-import { useReducer, FC, useEffect } from "react";
+import { useReducer, FC } from "react";
 import { LinksContext, linksReducer } from ".";
 import { Links } from "@/interfaces";
 import Cookies from "js-cookie";
@@ -159,7 +159,7 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
           type: "[LINKS] - Update_links",
           payload: data.link,
         });
-      } 
+      }
     } catch (error) {
       console.log(error);
     }
