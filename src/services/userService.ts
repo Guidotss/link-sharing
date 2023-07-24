@@ -98,6 +98,7 @@ export class UserService {
           lastName: true,
           password: false,
           image: true,
+          Links: true,
         },
       });
       if (!user) return null;

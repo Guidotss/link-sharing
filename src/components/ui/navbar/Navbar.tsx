@@ -3,10 +3,12 @@ import Link from "next/link";
 import { DevLinksIcon, HeaderLinkIcon, ProfileHeaderIcon } from "../icons";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 export const Navbar = () => {
   const [isHover, setIsHover] = useState(false);
   const pathName = usePathname();
+  const userId = Cookies.get("userId");
 
   return (
     <header className="flex justify-between items-center bg-white py-4 px-10 rounded-lg mx-20">
@@ -56,9 +58,9 @@ export const Navbar = () => {
           </Link>
         </div>
       </div>
-      <button className="text-purple font-semibold text-md border-[1px] px-8 py-2 rounded-lg border-purple hover:bg-light_purple transition-all hover:text-purple">
+      <Link href={`/preview/${userId}`} className="text-purple font-semibold text-md border-[1px] px-8 py-2 rounded-lg border-purple hover:bg-light_purple transition-all hover:text-purple">
         Preview
-      </button>
+      </Link>
     </header>
   );
 };

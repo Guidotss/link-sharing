@@ -79,10 +79,10 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
 
   const saveLinks = async (userId: string, links: Links[]) => {
 
-    console.log(links); 
+    console.log(state?.links?.length); 
 
 
-    if(state.links?.length === 5) { 
+    if(state.links?.length! > 5) { 
       toast.error("You have reached the limit of links", {
         style: {
           background: "#333",
