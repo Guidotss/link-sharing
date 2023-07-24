@@ -5,6 +5,8 @@ import { toast } from "react-hot-toast";
 import { LinksContext, linksReducer } from ".";
 import { Links } from "@/interfaces";
 
+
+
 interface LinkProviderProps {
   children: React.ReactNode;
 }
@@ -76,6 +78,22 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
   };
 
   const saveLinks = async (userId: string, links: Links[]) => {
+
+    console.log(links); 
+
+
+    if(state.links?.length === 5) { 
+      toast.error("You have reached the limit of links", {
+        style: {
+          background: "#333",
+          color: "#fff",
+          borderRadius: "10px",
+        },
+        duration: 3000,
+      });
+      return;
+    }
+
     try {
       const linksToSend = links.map((link) => {
         return {
@@ -153,21 +171,31 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
 
   const removeLink = (linkId: string) => {
     try {
-      const response = fetch("/api/links/remove", {
+
+      if(!isNaN(+linkId)){ 
+        dispatch({ 
+          type: "[LINKS] - Remove_link",
+          payload: linkId,
+        }); 
+        return; 
+      }
+
+      fetch("/api/links/remove", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ linkId }),
       });
+
+      dispatch({
+        type: "[LINKS] - Remove_link",
+        payload: linkId,
+      });
+
     } catch (error) {
       console.log(error);
     }
-
-    dispatch({
-      type: "[LINKS] - Remove_link",
-      payload: linkId,
-    });
   };
 
   const updateLinks = async (link: Links) => {
