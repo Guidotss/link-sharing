@@ -1,15 +1,21 @@
 "use client";
-import { useContext } from "react";
+import { useContext, useRef, useState } from "react";
 import { LinksContext } from "@/context/links/LinksContext";
 import { AuthContext } from "@/context";
 import { AddNewLinkForm } from "./AddNewLinkForm";
+import { Links } from "@/interfaces";
 
 export const AddLinksFormGrid = () => {
   const { links, saveLinks } = useContext(LinksContext);
+  const linksLengthRef = useRef<number>(links!.length);
+
   const { user } = useContext(AuthContext);
 
   const handleSaveLinks = () => {
-    saveLinks(user?.id!, links!);
+    const newLinks = Array.from(links!);
+    const linksToSave = newLinks.splice(linksLengthRef.current - 1);
+    console.log(linksToSave); 
+    saveLinks(user?.id!, linksToSave as Links[]);
   };
 
   return (

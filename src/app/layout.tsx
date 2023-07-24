@@ -2,6 +2,7 @@ import { Providers } from "@/providers";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 
 const instrumentSans = Instrument_Sans({ subsets: ["latin"] });
 
@@ -21,6 +22,10 @@ export default function RootLayout({
         className={`${instrumentSans.className} h-screen w-full bg-light_grey`}
       >
         <Providers>{children}</Providers>
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+        />
       </body>
     </html>
   );

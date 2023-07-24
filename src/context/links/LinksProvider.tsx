@@ -1,8 +1,9 @@
 "use client";
 import { useReducer, FC } from "react";
+import Cookies from "js-cookie";
+import { toast } from "react-hot-toast";
 import { LinksContext, linksReducer } from ".";
 import { Links } from "@/interfaces";
-import Cookies from "js-cookie";
 
 interface LinkProviderProps {
   children: React.ReactNode;
@@ -83,6 +84,23 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
         };
       });
 
+      const linksWithOutRepeated = state.links?.filter(
+        (link, index, self) =>
+          index === self.findIndex((l) => l.name === link.name)
+      );
+
+      if (linksWithOutRepeated?.length != state.links?.length) {
+        toast.error("You have repeated links", {
+          style: {
+            background: "#333",
+            color: "#fff",
+            borderRadius: "10px",
+          },
+          duration: 3000,
+        });
+        return;
+      }
+
       const response = await fetch("/api/links/create", {
         method: "POST",
         headers: {
@@ -91,7 +109,16 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
         body: JSON.stringify({ userId, links: linksToSend }),
       });
       const data = await response.json();
-      console.log(data);
+      if (data.ok) {
+        toast.success("Links saved successfully", {
+          style: {
+            background: "#333",
+            color: "#fff",
+            borderRadius: "10px",
+          },
+          duration: 3000,
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -153,8 +180,15 @@ export const LinksProvider: FC<LinkProviderProps> = ({ children }) => {
         body: JSON.stringify({ link }),
       });
       const data = await response.json();
-
       if (data.ok) {
+        toast.success("Link updated successfully", {
+          style: {
+            background: "#333",
+            color: "#fff",
+            borderRadius: "10px",
+          },
+          duration: 3000,
+        });
         dispatch({
           type: "[LINKS] - Update_links",
           payload: data.link,
