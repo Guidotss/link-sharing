@@ -29,7 +29,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await fetch("http://localhost:3000/api/auth/login", {
+      const response = await fetch("/api/auth/login", {
         method: "POST",
         body: JSON.stringify({ email, password }),
         headers: { "Content-Type": "application/json" },
@@ -59,7 +59,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
 
   const register = async (email: string, password: string) => {
     try {
-      const response = await fetch("http://localhost:3000/api/auth/register", {
+      const response = await fetch("/api/auth/register", {
         method: "POST",
         body: JSON.stringify({ email, password }),
         headers: { "Content-Type": "application/json" },
@@ -143,7 +143,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
 
     const url = await uploadUserImage(file);
     const response = await fetch(
-      "http://localhost:3000/api/auth/update-image",
+      "/api/auth/update-image",
       {
         method: "PUT",
         body: JSON.stringify({ image: url }),

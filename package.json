@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "yarn run open-browser && next dev",
-    "build": "next build",
+    "build": "next build && prisma generate --schema=src/prisma/schema.prisma",
     "start": "next start",
     "lint": "next lint",
     "open-browser": "start http://localhost:3000"
