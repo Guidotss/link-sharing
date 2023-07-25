@@ -1,4 +1,6 @@
-import { Links, PrismaClient } from "@prisma/client";
+import { Links } from "@/interfaces";
+import { PrismaClient } from "@prisma/client";
+
 
 export class LinkService {
   private prisma: PrismaClient;
@@ -11,7 +13,7 @@ export class LinkService {
     try {
       this.prisma.$connect();
       const result = await this.prisma.links.createMany({
-        data: link.map((link) => ({ ...link, userId })),
+        data: link.map((link) => ({ ...link, userId })) as any,
       });
       this.prisma.$disconnect();
       return result;
@@ -51,7 +53,7 @@ export class LinkService {
       this.prisma.$connect();
       const linkUpdated = await this.prisma.links.update({
         where: { id },
-        data: linkData,
+        data: linkData as any,
       });
       if (!linkUpdated) throw new Error("Link not found");
       this.prisma.$disconnect();
