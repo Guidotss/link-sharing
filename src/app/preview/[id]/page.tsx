@@ -1,6 +1,4 @@
-import { RightArrowIcon, ShareLinkButton } from "@/components";
-import { selectOptions } from "@/constants";
-import { Links } from "@/interfaces";
+import { LinksPreviewGrid,ShareLinkButton } from "@/components";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,9 +10,7 @@ interface PreviewPageProps {
 
 const getUserInfo = async (id: string) => {
   try {
-    const response = await fetch(`http://localhost:3000/api/user/${id}`, {
-      cache: "no-cache",
-    });
+    const response = await fetch(`http://localhost:3000/api/user/${id}`, { cache: "no-cache" });
     const data = await response.json();
     return data.user;
   } catch (error) {
@@ -39,7 +35,7 @@ async function PreviewPage({ params: { id } }: PreviewPageProps) {
         </nav>
       </header>
       <section className="flex item-center justify-center">
-        <div className="absolute min-h-[500px] rounded-lg bg-white w-[349px] -mt-32 flex flex-col gap-5 items-center">
+        <div className="absolute 2xl:min-h-[500px] rounded-lg bg-white w-[349px] 2xl:-mt-32 sm:-mt-44 flex flex-col gap-5 items-center">
           <Image
             className="rounded-full border-[3px] border-purple mt-10"
             src={user?.image ? user?.image : "https://placehold.jp/150x150.png"}
@@ -55,40 +51,7 @@ async function PreviewPage({ params: { id } }: PreviewPageProps) {
             <span className="text-grey text-md">{user?.email}</span>
           </div>
           <div className="flex flex-col">
-            {links?.map((link: Links) => {
-              let bgColor = selectOptions.find(
-                (option) =>
-                  option.name.toLowerCase() === link.name.toLowerCase()
-              )?.bgColor;
-              if (bgColor == "white") {
-                bgColor = `bg-${bgColor}`;
-              }
-              return (
-                <div
-                  key={link.id!}
-                  className={` ${bgColor} rounded-lg flex justify-between items-center py-4 text-white mb-4 w-[230px]`}
-                >
-                  <div className="flex items-center gap-2 ml-2 ">
-                    {selectOptions
-                      .find(
-                        (option) =>
-                          option.name.toLowerCase() === link.name.toLowerCase()
-                      )
-                      ?.icon({ fill: "#fff" })}
-                    <h1
-                      className={`${bgColor == "bg-white" ? "text-black" : ""}`}
-                    >
-                      {link.name}
-                    </h1>
-                  </div>
-                  <div className="mr-2 2xl:mr-4 cursor-pointer">
-                    <RightArrowIcon
-                      isWhite={bgColor == "bg-white" ? false : true}
-                    />
-                  </div>
-                </div>
-              );
-            })}
+            <LinksPreviewGrid links={links} />
           </div>
         </div>
       </section>
