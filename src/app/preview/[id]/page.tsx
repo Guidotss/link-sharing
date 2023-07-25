@@ -10,7 +10,7 @@ interface PreviewPageProps {
 
 const getUserInfo = async (id: string) => {
   try {
-    const response = await fetch(`$/api/user/${id}`,{ cache: "no-cache" });
+    const response = await fetch(`${process.env.API_URL}${id}`,{ cache: "no-cache" });
     const data = await response.json();
     return data.user;
   } catch (error) {
