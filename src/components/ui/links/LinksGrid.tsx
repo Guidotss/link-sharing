@@ -18,7 +18,7 @@ export const LinksGrid = () => {
         onDragEnd(result);
       }}
     >
-      <div className="flex flex-col absolute ml-8 -mt-2 w-[19%] 2xl:w-[13%]">
+      <div className="flex flex-col absolute ml-8 -mt-2 sm:w-[240px] 2xl:w-[13%]">
         <Droppable droppableId="links">
           {(provided) => (
             <div
