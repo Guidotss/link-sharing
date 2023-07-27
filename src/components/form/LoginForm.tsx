@@ -48,7 +48,7 @@ export const LoginForm = () => {
 
   return (
     <form
-      className="flex flex-col bg-white rounded-xl h-1/2 w-[500px] p-16 text-dark_grey"
+      className="flex flex-col bg-white rounded-xl h-1/2 w-[500px] p-16 text-dark_gre ml-16 md:ml-0"
       onSubmit={handleSubmit}
     >
       <h3 className="text-4xl font-bold">Login</h3>
