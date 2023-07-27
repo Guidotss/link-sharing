@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className="2xl:px-20 2xl:py-5 sm:py-2 bg-light_grey">
       <Navbar />
-      <section className="flex 2xl:gap-3 sm:px-20 mt-14">
+      <section className="flex 2xl:gap-3 py-10 sm:px-20 mt-14">
         <div className="bg-white flex-auto 2xl:h-[75vh] h-full w-full hidden md:flex items-center justify-center rounded-lg">
           <div className="-mt-16">
             <LinksGrid />
