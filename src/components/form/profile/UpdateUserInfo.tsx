@@ -2,7 +2,7 @@
 import { useForm } from "@/hooks";
 import { InputForm } from "../InputForm";
 
-export const UpdateUserInfo = () => {
+export const  UpdateUserInfo = () => {
   const {
     form: { firstName, lastName, email },
     handleSubmit,

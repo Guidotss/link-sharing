@@ -24,7 +24,10 @@ export const Navbar = () => {
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
-          <Link href="/">
+          <Link href="/" className="flex gap-1 items-center">
+            <HeaderLinkIcon
+              fill={isHover || pathName == "/" ? "#633CFF" : undefined}
+            />
             <span
               className={`${
                 pathName == "/" ? "text-purple" : "text-grey"
@@ -32,9 +35,6 @@ export const Navbar = () => {
             >
               Links
             </span>
-              <HeaderLinkIcon
-                fill={isHover || pathName == "/" ? "#633CFF" : undefined}
-              />
           </Link>
         </div>
         <div
@@ -44,7 +44,10 @@ export const Navbar = () => {
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
-          <Link href="/profile">
+          <Link href="/profile" className="flex items-center gap-1">
+            <ProfileHeaderIcon
+              fill={isHover || pathName == "/profile" ? "#633CFF" : undefined}
+            />
             <span
               className={`text-md ${
                 pathName == "/profile" ? "text-purple" : "text-grey"
@@ -52,9 +55,6 @@ export const Navbar = () => {
             >
               Profile Details
             </span>
-              <ProfileHeaderIcon
-                fill={isHover || pathName == "/profile" ? "#633CFF" : undefined}
-              />
           </Link>
         </div>
       </div>

@@ -7,7 +7,7 @@ import {
 
 function ProfilePage() {
   return (
-    <main className="bg-light_grey md:px-16 px-5 py-5">
+    <main className="bg-light_grey md:px-16 sm:px-5 sm:py-5">
       <Navbar />
       <section className="flex 2xl:gap-3 md:px-20 mt-14">
         <div className="bg-white flex-auto 2xl:h-[75vh] h-full w-full hidden md:flex items-center justify-center rounded-lg">
@@ -16,7 +16,7 @@ function ProfilePage() {
           </div>
           <MockupProfile />
         </div>
-        <div className="w-full bg-white min-h-[75vh] items-center justify-center rounded-lg p-10">
+        <div className="w-full bg-white min-h-[75vh] items-center justify-center rounded-lg sm:p-10">
           <UpdateProfileSection />
         </div>
       </section>
