@@ -12,12 +12,12 @@ export const  UpdateUserInfo = () => {
   return (
     <>
       <form
-        className="bg-light_grey flex flex-col 2xl:px-10"
+        className="bg-light_grey flex flex-col items-center 2xl:px-10"
         onSubmit={handleSubmit}
       >
-        <div className="flex justify-between items-center">
-          <h3>First name*</h3>
-          <div className="mt-4">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
+          <h3 className="text-sm sm:text-lg">First name*</h3>
+          <div className="sm:mt-4 mt-1">
             <InputForm
               placeholder="First name"
               type="text"
@@ -29,9 +29,9 @@ export const  UpdateUserInfo = () => {
             />
           </div>
         </div>
-        <div className="flex justify-between items-center">
-          <h3>Last name*</h3>
-          <div className="mt-4">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
+          <h3 className="text-sm sm:text-lg">Last name*</h3>
+          <div className="sm:mt-4 mt-1">
             <InputForm
               placeholder="First name"
               type="text"
@@ -43,9 +43,9 @@ export const  UpdateUserInfo = () => {
             />
           </div>
         </div>
-        <div className="flex justify-between items-center">
-          <h3>Email</h3>
-          <div className="mt-4">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
+          <h3 className="text-sm sm:text-lg">Email</h3>
+          <div className="sm:mt-4 mt-1">
             <InputForm
               placeholder="First name"
               type="text"
@@ -58,9 +58,9 @@ export const  UpdateUserInfo = () => {
           </div>
         </div>
       </form>
-      <div className="w-full flex justify-end border-t-[1px] mt-10">
+      <div className="w-full flex justify-end border-t-[1px] sm:mt-10">
         <button
-          className="mt-10 px-10 py-2 bg-purple text-white rounded-lg hover:bg-soft_purple transition-colors duration-300"
+          className="sm:mt-10 mt-5 px-10 py-2 bg-purple text-white rounded-lg hover:bg-soft_purple transition-colors duration-300"
           onClick={handleSubmit}
         >
           Save
