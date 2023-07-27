@@ -18,7 +18,7 @@ export const AddNewLinkSection = () => {
   return (
     <>
       <div>
-        <h1 className="text-3xl font-bold">Customize your links</h1>
+        <h1 className="text-3xl font-bold mt-5 md:mt-0">Customize your links</h1>
         <p className="mt-2 text-grey">
           Add/edit/remove links below and then share all your profiles with the
           world!
