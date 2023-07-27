@@ -65,7 +65,7 @@ export const RegisterForm = () => {
 
   return (
     <form
-      className="flex flex-col bg-white rounded-xl h-1/2 md:w-[500px] w-full md:p-16 px-2 py-10 text-dark_grey"
+      className="flex flex-col bg-white rounded-xl md:h-1/2 h-[300px] md:w-[500px] w-full md:p-16 px-5 text-dark_grey"
       onSubmit={handleRegister}
     >
       <h3 className="text-4xl font-bold">Create account</h3>
