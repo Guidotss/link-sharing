@@ -65,7 +65,7 @@ export const RegisterForm = () => {
 
   return (
     <form
-      className="flex flex-col bg-white rounded-xl md:h-1/2 h-[450px] md:w-[500px] w-full md:p-16 px-8 text-dark_grey"
+      className="flex flex-col bg-white rounded-xl md:h-1/2 h-[400px] md:w-[500px] w-full md:p-16 px-8 text-dark_grey"
       onSubmit={handleRegister}
     >
       <h3 className="text-4xl font-bold">Create account</h3>
@@ -141,7 +141,7 @@ export const RegisterForm = () => {
         </div>
       </div>
       <button
-        className="w-full py-3 bg-purple 2xl:mt-10 rounded-lg hover:bg-soft_purple transition-all"
+        className="w-full py-3 bg-purple 2xl:mt-10 mt-5 rounded-lg hover:bg-soft_purple transition-all"
         type="submit"
       >
         <span className="text-white tracking-wider">Create new account</span>
