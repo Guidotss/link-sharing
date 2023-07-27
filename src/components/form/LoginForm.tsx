@@ -48,7 +48,7 @@ export const LoginForm = () => {
 
   return (
     <form
-      className="flex flex-col bg-white rounded-xl h-1/2 w-[500px] p-16 text-dark_gre ml-16 md:ml-0"
+      className="flex flex-col bg-white rounded-xl h-1/2 md:w-[500px] w-[460px] md:p-16 p-6 px-14 text-dark_gre "
       onSubmit={handleSubmit}
     >
       <h3 className="text-4xl font-bold">Login</h3>
@@ -103,12 +103,12 @@ export const LoginForm = () => {
         </div>
       </div>
       <button
-        className="w-full py-3 bg-purple mt-10 rounded-lg hover:bg-soft_purple transition-all"
+        className="md:w-full w-[350px] py-3 bg-purple mt-10 rounded-lg hover:bg-soft_purple transition-all"
         type="submit"
       >
         <span className="text-white tracking-wider">Login</span>
       </button>
-      <div className="flex mt-2 justify-center w-full">
+      <div className="flex mt-2 justify-center md:w-full w-[350px]">
         <span className="text-grey">Don’t have an account?</span>
         <Link href="/auth/register" className="text-purple ml-2">
           Create account
