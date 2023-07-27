@@ -12,7 +12,7 @@ export const  UpdateUserInfo = () => {
   return (
     <>
       <form
-        className="bg-light_grey flex flex-col items-center 2xl:px-10"
+        className="bg-light_grey flex flex-col items-center px-10"
         onSubmit={handleSubmit}
       >
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
@@ -60,7 +60,7 @@ export const  UpdateUserInfo = () => {
       </form>
       <div className="w-full flex justify-end border-t-[1px] sm:mt-10">
         <button
-          className="sm:mt-10 mt-5 px-10 py-2 bg-purple text-white rounded-lg hover:bg-soft_purple transition-colors duration-300"
+          className="sm:mt-10 mt-5 mb-5 px-10 py-2 bg-purple text-white rounded-lg hover:bg-soft_purple transition-colors duration-300"
           onClick={handleSubmit}
         >
           Save
