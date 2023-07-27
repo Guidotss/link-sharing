@@ -10,7 +10,7 @@ interface PreviewPageProps {
 
 const getUserInfo = async (id: string) => {
   try {
-    const response = await fetch(`${process.env.API_URL}/${id}`,{ cache: "no-cache" });
+    const response = await fetch(`${process.env.API_URL}/${id}`, {next: {revalidate:1}});
     const data = await response.json();
     return data.user;
   } catch (error) {
@@ -23,7 +23,7 @@ async function PreviewPage({ params: { id } }: PreviewPageProps) {
   const links = user?.Links;
   return (
     <main className="w-full h-screen bg-light_grey">
-      <header className="bg-purple p-10 h-[357px] rounded-b-3xl">
+      <header className="sm:bg-purple md:p-10 py-5 h-[357px] rounded-b-3xl">
         <nav className="bg-white w-full flex justify-between rounded-lg p-5 px-10">
           <Link
             href="/"
@@ -35,7 +35,7 @@ async function PreviewPage({ params: { id } }: PreviewPageProps) {
         </nav>
       </header>
       <section className="flex item-center justify-center">
-        <div className="absolute 2xl:min-h-[500px] rounded-lg bg-white w-[349px] 2xl:-mt-32 sm:-mt-44 flex flex-col gap-5 items-center">
+        <div className="absolute 2xl:min-h-[500px] rounded-lg bg-white w-[349px] 2xl:-mt-32 sm:-mt-44 -mt-64 flex flex-col gap-5 items-center">
           <Image
             className="rounded-full border-[3px] border-purple mt-10"
             src={user?.image ? user?.image : "https://placehold.jp/150x150.png"}

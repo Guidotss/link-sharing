@@ -28,7 +28,7 @@ export const LinkPreviewCard: FC<LinkPreviewCardProps> = ({ link }) => {
   return (
     <div
       key={link.id!}
-      className={` ${bgColor} rounded-lg flex justify-between items-center 2xl:py-4 sm:py-3 text-white mb-4 w-[230px]`}
+      className={` ${bgColor} rounded-lg flex justify-between items-center 2xl:py-4 py-3 text-white mb-4 w-[230px]`}
     >
       <div className="flex items-center gap-2 ml-2 ">
         {selectOptions
