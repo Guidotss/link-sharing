@@ -11,7 +11,7 @@ export const Navbar = () => {
   const userId = Cookies.get("userId");
 
   return (
-    <header className="flex justify-between items-center bg-white py-4 px-10 rounded-lg mx-20">
+    <header className="flex justify-between items-center bg-white py-4 md:px-10 px-4 rounded-lg md:mx-20">
       <div className="flex items-center">
         <DevLinksIcon />
         <h3 className="text-2xl font-bold">devlinks</h3>

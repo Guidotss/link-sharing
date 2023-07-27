@@ -7,10 +7,10 @@ import {
 
 function ProfilePage() {
   return (
-    <main className="bg-light_grey px-16 py-5">
+    <main className="bg-light_grey md:px-16 px-5 py-5">
       <Navbar />
-      <section className="flex 2xl:gap-3 px-20 mt-14">
-        <div className="bg-white flex-auto 2xl:h-[75vh] h-full w-full flex items-center justify-center rounded-lg">
+      <section className="flex 2xl:gap-3 md:px-20 mt-14">
+        <div className="bg-white flex-auto 2xl:h-[75vh] h-full w-full hidden md:flex items-center justify-center rounded-lg">
           <div className="-mt-16">
             <LinksGrid />
           </div>
