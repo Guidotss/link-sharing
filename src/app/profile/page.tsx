@@ -16,7 +16,7 @@ function ProfilePage() {
           </div>
           <MockupProfile />
         </div>
-        <div className="w-full bg-white min-h-[75vh] items-center justify-center rounded-lg sm:p-10 px-5">
+        <div className="w-full bg-white min-h-[75vh]  rounded-lg sm:p-10 px-5">
           <UpdateProfileSection />
         </div>
       </section>
