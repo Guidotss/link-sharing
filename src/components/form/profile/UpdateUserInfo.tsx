@@ -12,11 +12,11 @@ export const  UpdateUserInfo = () => {
   return (
     <>
       <form
-        className="bg-light_grey flex flex-col items-center px-10"
+        className="bg-light_grey flex flex-col items-center md:items-stretch px-10"
         onSubmit={handleSubmit}
       >
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
-          <h3 className="text-sm sm:text-lg">First name*</h3>
+          <h3 className="text-sm sm:text-lg w-[100px]">First name*</h3>
           <div className="sm:mt-4 mt-1">
             <InputForm
               placeholder="First name"
